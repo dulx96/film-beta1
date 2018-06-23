@@ -23,7 +23,6 @@ const publicUrl = ''
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl)
 
-const cssClassName = '[path][name]__[local]--[hash:base64:5]'
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
@@ -166,8 +165,6 @@ module.exports = {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
-                  localIdentName: cssClassName,
-                  modules: true,
                 },
               },
               {
@@ -194,17 +191,12 @@ module.exports = {
           },
           {
             test: /\.less$/,
-            include: [
-              path.resolve(paths.appSrc, 'components'),
-            ],
             use: [
               require.resolve('style-loader'),
               {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
-                  localIdentName: cssClassName,
-                  modules: true,
                 },
               },
               {
@@ -228,7 +220,7 @@ module.exports = {
                 },
               },
               {
-                loader: 'less-loader',
+                loader: require.resolve('less-loader'),
               },
             ],
           },

@@ -1,0 +1,63 @@
+.wrap {
+  position: fixed;
+  top: 0;
+  z-index: 1001;
+  background: red;
+}
+
+.content {
+  width: 100vw;
+  height: 52px;
+
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  color: white;
+  a {
+    color: white;
+    border: transparent;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  p {
+    padding: 0 10px;
+    margin: 0;
+  }
+
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  margin: 0 30px;
+  background-size: cover;
+  background: no-repeat 50% 50%;
+  border-radius: 50px;
+}
+
+.avatar-onload {
+  width: 40px;
+  height: 40px;
+  margin: 0 30px;
+  background-size: cover;
+  background: no-repeat 50% 50%;
+  border-radius: 50px;
+  background: #222222;
+}
+
+.board-inactive {
+  transition: all 0.6s;
+  transform: rotate(0deg);
+  transform-origin: 50% 50%;
+}
+
+.board-active {
+  transform: rotate(360deg);
+}

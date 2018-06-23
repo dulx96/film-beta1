@@ -16,6 +16,8 @@
     "css-loader": "0.28.7",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "4.10.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",
@@ -28,15 +30,22 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "promise": "8.0.1",
+    "prop-types": "latest",
     "raf": "3.4.0",
     "react": "^16.4.1",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.1",
+    "react-icons": "^2.2.7",
+    "react-redux": "^5.0.7",
+    "react-test-renderer": "^16.4.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "resolve": "1.6.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
@@ -55,6 +64,7 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],
+
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
     ],
@@ -83,7 +93,9 @@
       "jsx",
       "node",
       "mjs"
-    ]
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/test/setupTests.js"
+
   },
   "babel": {
     "presets": [

@@ -1,20 +1,37 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
+import { Provider } from 'react-redux'
+
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import rootReducer from './reducers'
+
+//import actions
+import  {fetchUser} from './actions/userActions'
+//import component
+import TopBar from './components/TopBar'
+//import style
 import './App.css'
 
+//create the redux store
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk),
+)
+
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(fetchUser())
+  }
   render () {
     return (
-      <div className="App" >
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <TopBar/>
       </div>
     )
   }
 }
-export default App
+
+export default () => <Provider store={store}>
+  <App />
+</Provider>
