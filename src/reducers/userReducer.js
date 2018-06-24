@@ -1,6 +1,6 @@
 import * as actions from '../constants/actions'
 
-const userReducer = (state = {user : {ava : 't la du'},fetchUserSuccess: false}, action) => {
+const userReducer = (state = {fetchUserSuccess: false}, action) => {
   switch (action.type) {
     case actions.FETCH_USER_SUCCESS:
       return {

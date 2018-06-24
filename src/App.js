@@ -1,37 +1,62 @@
 import React, { Component } from 'react'
-import { Provider } from 'react-redux'
-
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import rootReducer from './reducers'
-
+import { connect } from 'react-redux'
 //import actions
-import  {fetchUser} from './actions/userActions'
+import { fetchUser } from './actions/userActions'
 //import component
 import TopBar from './components/TopBar'
+import HomeCarousel from './components/HomeCarousel'
 //import style
 import './App.css'
 
-//create the redux store
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(thunk),
-)
-
 class App extends Component {
-  componentDidMount() {
-    store.dispatch(fetchUser())
+  constructor (props) {
+    super(props)
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
   }
+
+  state = {
+    screenWidth: 0,
+  }
+
+  componentWillMount () {
+    this.props.fetchUser()
+  }
+
+  componentDidMount () {
+    this.updateWindowDimensions()
+    window.addEventListener('resize', this.updateWindowDimensions)
+
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.updateWindowDimensions)
+  }
+
+  updateWindowDimensions () {
+    this.setState({screenWidth: window.innerWidth})
+  }
+
   render () {
+    const screenWidth = this.state.screenWidth
     return (
-      <div>
-        <TopBar/>
-      </div>
+      this.props.fetchUserSuccess ?
+        <div>
+          <TopBar />
+          <HomeCarousel screenWidth={screenWidth} />
+        </div> : <h1> lag </h1>
     )
   }
 }
 
-export default () => <Provider store={store}>
-  <App />
-</Provider>
+const mapStateToProps = ({userReducer: {fetchUserSuccess}}) => (
+  {
+    fetchUserSuccess,
+  }
+)
+const mapDispatchToProps = (dispatch) => (
+  {
+    fetchUser: () => dispatch(fetchUser()),
+  }
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

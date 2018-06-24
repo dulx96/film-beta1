@@ -167,7 +167,6 @@ module.exports = {
                 options: {
                   importLoaders: 1,
                   localIdentName: cssClassName,
-                  modules: true,
                 },
               },
               {

@@ -1,8 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 //import component
 import IconBoard from 'react-icons/lib/md/group-work'
-
 //import style
 import * as styles from './TopBar.less'
 
@@ -27,8 +25,9 @@ const TopBar = ({userReducer: {user, fetchUserSuccess}}) => {
           <p>Profile</p>
         </div>
 
-        <div className={fetchUserSuccess ? styles.avatar : styles['avatar-onload']}
-             style={{backgroundImage: `url(${user.ava})`}}>
+        <div
+          className={fetchUserSuccess ? styles.avatar : styles['avatar-onload']}
+          style={fetchUserSuccess ? {backgroundImage: `url(${require(`../../resources/CircleImage/${user.ava}`)})`} : {}}>
         </div>
       </div>
     </div>
