@@ -5,11 +5,14 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin')
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const paths = require('./paths')
 const getClientEnvironment = require('./env')
 
@@ -38,9 +41,10 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 const cssFilename = 'static/css/[name].[contenthash:8].css'
 const cssClassName = '[hash:base64:5]'
 
-const extractLess = new ExtractTextPlugin({
+// extrac less
+
+const ExtractLess = new ExtractTextPlugin({
   filename: cssFilename,
-  disable: false,
 })
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -216,52 +220,57 @@ module.exports = {
             ),
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
+          //less loader
           {
             test: /\.less$/,
-            include: [
-              path.resolve(paths.appSrc, 'components'),
-            ],
-            use: extractLess.extract({
-              fallback: {
-                loader: require.resolve('style-loader'),
-                options: {
-                  hmr: false,
-                },
-              },
-              use: [
+            loader: ExtractLess.extract(
+              Object.assign(
                 {
-                  loader: require.resolve('css-loader'),
-                  options: {
-                    importLoaders: 1,
-                    localIdentName: cssClassName,
-                    modules: true,
-                    minimize: process.env.NODE_ENV === 'production',
-                    sourceMap: shouldUseSourceMap,
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    },
                   },
-                },
-                {
-                  loader: require.resolve('postcss-loader'),
-                  options: {
-                    // Necessary for external CSS imports to work
-                    // https://github.com/facebookincubator/create-react-app/issues/2677
-                    ident: 'postcss',
-                    plugins: () => [
-                      require('postcss-flexbugs-fixes'),
-                      autoprefixer({
-                        browsers: [
-                          '>1%',
-                          'last 4 versions',
-                          'Firefox ESR',
-                          'not ie < 9', // React doesn't support IE8 anyway
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'),
+                      options: {
+                        importLoaders: 1,
+                        minimize: true,
+                        module: true,
+                        sourceMap: shouldUseSourceMap,
+                      },
+                    },
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: {
+                        // Necessary for external CSS imports to work
+                        // https://github.com/facebookincubator/create-react-app/issues/2677
+                        ident: 'postcss',
+                        plugins: () => [
+                          require('postcss-flexbugs-fixes'),
+                          autoprefixer({
+                            browsers: [
+                              '>1%',
+                              'last 4 versions',
+                              'Firefox ESR',
+                              'not ie < 9', // React doesn't support IE8 anyway
+                            ],
+                            flexbox: 'no-2009',
+                          }),
                         ],
-                        flexbox: 'no-2009',
-                      }),
-                    ],
-                  },
+                      },
+                    },
+                    {
+                      loader: require.resolve('less-loader'),
+                    },
+                  ],
                 },
-                {loader: require.resolve('less-loader')},
-              ],
-            }),
+                extractTextPluginOptions,
+              ),
+            ),
+            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
@@ -285,11 +294,14 @@ module.exports = {
     ],
   },
   plugins: [
+    //enabled scope hoisting
+    new webpack.optimize.ModuleConcatenationPlugin(),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In production, it will be an empty string unless you specify "homepage"
     // in `package.json`, in which case it will be the pathname of that URL.
+
     new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
@@ -315,14 +327,17 @@ module.exports = {
     new webpack.DefinePlugin(env.stringified),
     // Minify the code.
     new webpack.optimize.UglifyJsPlugin({
-      cache: true,
       compress: {
         warnings: false,
-        // Disabled because of an issue with Uglify breaking seemingly valid code:
-        // https://github.com/facebookincubator/create-react-app/issues/2376
-        // Pending further investigation:
-        // https://github.com/mishoo/UglifyJS2/issues/2011
-        comparisons: false,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true,
       },
       mangle: {
         safari10: true,
@@ -338,6 +353,23 @@ module.exports = {
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin({
       filename: cssFilename,
+    }),
+    ExtractLess,
+    new StyleExtHtmlWebpackPlugin({
+      minify: true
+    }),
+    //inline script
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
+    }),
+
+    //gzip
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
+      threshold: 10240,
+      minRatio: 0.8
     }),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
