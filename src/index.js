@@ -1,10 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
+import { hydrate, render } from 'react-dom'
 
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 
@@ -16,9 +16,14 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk),
 )
-
-ReactDOM.render(<Provider store={store}>
+const rootElement = document.getElementById('root')
+if (rootElement.hasChildNodes()) {
+  hydrate(<Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById('root'))
+  </Provider>, rootElement)
+} else {
+  render(<Provider store={store}>
+    <App />
+  </Provider>, rootElement)
+}
 registerServiceWorker()
