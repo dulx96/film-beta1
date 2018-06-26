@@ -9,5 +9,5 @@ export const fetchUserSuccess = (user) => {
 
 export const fetchUser = () => dispatch => {
   const user = {ava: 'thoa.jpg'}
-  setTimeout(() => dispatch(fetchUserSuccess(user)), 2000)
+  dispatch(fetchUserSuccess(user))
 }

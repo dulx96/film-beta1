@@ -9,7 +9,16 @@ import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 
 import registerServiceWorker from './registerServiceWorker'
+//reset css
+import 'normalize.css'
+//import font
+import WebFont from 'webfontloader'
 
+WebFont.load({
+  google: {
+    families: ['Roboto Condensed:400, 700', 'sans-serif'],
+  },
+})
 //create the redux store
 const store = createStore(
   rootReducer,

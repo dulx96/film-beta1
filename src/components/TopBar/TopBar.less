@@ -2,33 +2,36 @@
   position: fixed;
   top: 0;
   z-index: 1001;
-  background: red;
+  background: #FFFFFF;
 }
 
 .content {
   width: 100vw;
   height: 52px;
-
   padding: 0 20px;
   display: flex;
   align-items: center;
   background: transparent;
-  color: white;
-  a {
-    color: white;
-    border: transparent;
-    background-color: transparent;
-    width: 40px;
-    height: 40px;
-  }
+  color: #7f8c8d;
 }
 
 .menu {
   display: flex;
   align-items: center;
   p {
-    padding: 0 10px;
-    margin: 0;
+    margin: 0.1em;
+    width: 7em;
+    text-align: center;
+    padding: 0.5em 0;
+    font-size: 1.4em;
+    border-radius: 1em;
+    font-weight: 300;
+  }
+  p.active {
+    color: white;
+    background: linear-gradient(60deg,#1DC4E9, #1DE9B6);
+    box-shadow: 1px 3px 20px 2px rgba(0, 0, 0, 0.2);
+
   }
 
 }

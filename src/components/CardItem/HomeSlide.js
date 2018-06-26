@@ -29,7 +29,7 @@ const HomeSlide = props => {
             <IconStar size={20} />
             <p>{props.views} Views</p>
           </div>
-          <p>
+          <p className={styles.details}>
             {props.details}
           </p>
           <div style={{flex: 1}} />
@@ -39,10 +39,10 @@ const HomeSlide = props => {
           </div>
           <div className={styles.options}>
             <a className={styles['more-details']}>
-              More Details
+              Details
             </a>
             <a className={styles.play}>
-              Play now
+              Play
             </a>
           </div>
 

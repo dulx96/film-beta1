@@ -61,6 +61,7 @@ class HomeCarousel extends Component<Props> {
             {data.map((d, index) => <HomeSlide key={index} {...d} />)}
           </Slider>
         </div>
+      <span className={styles.scroll}/>
       </div>
 
     )
