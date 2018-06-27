@@ -7,6 +7,7 @@ import { HomeSlide } from '../CardItem'
 import Slider from 'react-slick'
 
 // import styles
+import background from '../../resources/background/1.jpg'
 import * as styles from './HomeCarousel.less'
 import './Carousel.css'
 
@@ -55,7 +56,7 @@ class HomeCarousel extends Component<Props> {
 
     const data = this.props.data
     return (
-      <div className={styles.wrap}>
+      <div className={styles.wrap} style={{backgroundImage: `url(${background})`}}>
         <div className={styles.content}>
           <Slider {...settings}>
             {data.map((d, index) => <HomeSlide key={index} {...d} />)}
