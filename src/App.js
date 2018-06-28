@@ -42,7 +42,7 @@ class App extends Component {
 
       <div>
         {this.props.fetchUserSuccess ? <TopBar /> : <h1>on loading top bar</h1>}
-        <HomeCarousel screenWidth={screenWidth} />
+        {/*<HomeCarousel screenWidth={screenWidth} />*/}
       </div>
     )
   }

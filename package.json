@@ -77,6 +77,10 @@
     "test": "node scripts/test.js --env=jsdom",
     "flow": "flow"
   },
+  "reactSnap": {
+    "inlineCss": false,
+    "removeStyleTags": true
+  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"

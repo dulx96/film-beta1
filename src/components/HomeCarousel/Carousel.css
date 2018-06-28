@@ -36,11 +36,10 @@
 }
 .slick-list:focus
 {
-    outline: none;
+    outline: red;
 }
 .slick-list.dragging
 {
-    cursor: pointer;
     cursor: hand;
 }
 
@@ -59,7 +58,6 @@
     position: relative;
     top: 0;
     left: 0;
-
     display: block;
     margin-left: auto;
     margin-right: auto;
