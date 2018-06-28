@@ -39,10 +39,9 @@ class App extends Component {
   render () {
     const screenWidth = this.state.screenWidth
     return (
-
       <div>
-        {this.props.fetchUserSuccess ? <TopBar /> : <h1>on loading top bar</h1>}
-        {/*<HomeCarousel screenWidth={screenWidth} />*/}
+        <TopBar />
+        <HomeCarousel screenWidth={screenWidth} />
       </div>
     )
   }

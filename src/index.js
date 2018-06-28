@@ -26,13 +26,16 @@ const store = createStore(
   applyMiddleware(thunk),
 )
 const rootElement = document.getElementById('root')
-if (rootElement.hasChildNodes()) {
-  hydrate(<Provider store={store}>
-    <App />
-  </Provider>, rootElement)
-} else {
-  render(<Provider store={store}>
-    <App />
-  </Provider>, rootElement)
-}
+// if (rootElement.hasChildNodes()) {
+//   hydrate(<Provider store={store}>
+//     <App />
+//   </Provider>, rootElement)
+// } else {
+//   render(<Provider store={store}>
+//     <App />
+//   </Provider>, rootElement)
+// }
+render(<Provider store={store}>
+  <App/>
+</Provider>,rootElement)
 registerServiceWorker()
