@@ -6,7 +6,6 @@ export const getHomeCarouselSuccess = (data) => (
     , data,
   }
 )
-
 export const getHomeCarousel = () => dispatch => {
   const initialState = [
     {

@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux'
 import { getHomeCarousel } from '../../actions/homeCarouselActions'
 import HomeCarousel from './HomeCarousel'
 
-const mapStateToProps = ({homeCarouselReducer: {data, getHomeCarouselSuccess} }) => (
+const mapStateToProps = ({homeCarouselReducer: {data, getHomeCarouselSuccess}}) => (
   {
-    data: getHomeCarouselSuccess ? data : []
+    data: getHomeCarouselSuccess ? data : [],
   }
 )
 const mapDispatchToProps = dispatch => {

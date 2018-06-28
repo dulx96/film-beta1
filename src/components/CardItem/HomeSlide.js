@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 // import components
 import IconStar from 'react-icons/lib/ti/star'
 //import styles
@@ -38,10 +38,10 @@ const HomeSlide = props => {
             {props.sub.map((e, index) => <i key={index}> {e} </i>)}
           </div>
           <div className={styles.options}>
-            <a className={styles['more-details']}>
+            <a>
               Details
             </a>
-            <a className={styles.play}>
+            <a>
               Play
             </a>
           </div>
