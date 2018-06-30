@@ -1,5 +1,5 @@
 //User
-export const FETCH_USER = 'FETCH_USER'
+export const FETCH_USER: string = 'FETCH_USER'
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS'
 export const FETCH_USER_ERROR = 'FETCH_USER_ERROR'
 
@@ -8,3 +8,8 @@ export const GET_CAROUSEL = 'GET_CAROUSEL'
 export const GET_CAROUSEL_SUCCESS = 'GET_CAROUSEL_SUCCESS'
 export const GET_CAROUSEL_ERROR = 'GET_CAROUSEL_ERROR'
 
+//Home Board
+export const TOGGLE_HOME_BOARD = 'TOGGLE_HOME_BOARD'
+
+//SideBar
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'

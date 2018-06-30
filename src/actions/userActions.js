@@ -1,4 +1,4 @@
-import * as actions from '../constants/actions'
+import * as actions from '../constants/actionTypes'
 
 export const fetchUserSuccess = (user) => {
   return {

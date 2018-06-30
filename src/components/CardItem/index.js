@@ -1,2 +1,4 @@
 import HomeSlide from './HomeSlide'
-export  {HomeSlide}
+import MovieCard from './MovieCard'
+
+export { HomeSlide, MovieCard }

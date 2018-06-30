@@ -1,4 +1,4 @@
-import * as actions from '../constants/actions'
+import * as actions from '../constants/actionTypes'
 
 const userReducer = (state = {fetchUserSuccess: false}, action) => {
   switch (action.type) {

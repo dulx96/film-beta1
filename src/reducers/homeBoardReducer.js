@@ -1,14 +1,14 @@
 import * as actions from '../constants/actionTypes'
 
-export default  (state = {}, action) => {
+export default (state = {homeBoardIsActive: false}, action) => {
   switch (action.type) {
-    case actions.GET_CAROUSEL_SUCCESS:
+    case actions.TOGGLE_HOME_BOARD:
       return {
         ...state,
-        data: action.data,
-        getHomeCarouselSuccess: true,
+        homeBoardIsActive: !state.homeBoardIsActive,
       }
     default:
       return state
   }
+
 }

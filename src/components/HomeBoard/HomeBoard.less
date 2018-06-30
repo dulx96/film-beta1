@@ -1,0 +1,21 @@
+@import '../TopBar/TopBar';
+
+.wrap {
+  width: 100vw;
+  height: calc(100vh - @topBarHeight);
+  padding-top: 52px;
+  background: red;
+  position: fixed;
+  top: @topBarHeight;
+  left: 0;
+  z-index: 1001;
+  transform: translateY(100vh);
+  transition: all 1s;
+  &.active {
+    transform: translate(0);
+  }
+}
+
+.container {
+
+}

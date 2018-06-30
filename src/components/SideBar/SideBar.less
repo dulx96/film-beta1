@@ -1,0 +1,36 @@
+@import "../TopBar/TopBar";
+
+.SideBarCommon {
+  width: 240px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  transform: translateX(-100%);
+  transition: 0.4s;
+  &.active {
+    transform: translateX(0);
+  }
+}
+
+.SideBarWideScreen {
+  .SideBarCommon;
+  padding-top: @topBarHeight;
+}
+
+.SideBarSmallScreen {
+  .SideBarCommon;
+  top: -@topBarHeight;
+  .header {
+    width: 100%;
+    height: @topBarHeight;
+  }
+  .blurContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: calc(100vh - 240px);
+    background: black;
+    
+  }
+}

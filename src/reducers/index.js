@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
-import userReducer  from './userReducer'
+import userReducer from './userReducer'
 import homeCarouselReducer from './homeCarouselReducer'
+import homeBoardReducer from './homeBoardReducer'
+import sideBarReducer from './sideBarReducer'
 
 export default combineReducers({
   userReducer,
-  homeCarouselReducer
+  homeCarouselReducer,
+  homeBoardReducer,
+  sideBarReducer,
 })

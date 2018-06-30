@@ -1,28 +1,24 @@
-// @flow
 import React, { Component } from 'react'
 
 //import components
 import { HomeSlide } from '../CardItem'
 //import plugins
 import Slider from 'react-slick'
+import windowSize from 'react-window-size'
 
 // import styles
 import background from '../../resources/background/1.jpg'
 import * as styles from './HomeCarousel.less'
 import './Carousel.css'
 
-type Props = {
-  screenWidth: number,
-}
-
-class HomeCarousel extends Component<Props> {
+class HomeCarousel extends Component {
   componentWillMount () {
     this.props.getHomeCarousel()
   }
 
   render () {
     // const imgAdd = require(`../../resources/HomeCarouselImage/${this.props.imgId}`)
-    const screenWidth = this.props.screenWidth
+    const screenWidth = this.props.windowWidth
     let centerPadding = 0
     if (screenWidth > 1600) {
       centerPadding = '350px'
@@ -56,18 +52,18 @@ class HomeCarousel extends Component<Props> {
 
     const data = this.props.data
     return (
-      <div className={styles.wrap} style={{backgroundImage: `url(${background})`}}>
+      <div className={styles.wrap}
+           style={{backgroundImage: `url(${background})`}}>
         <div className={styles.content}>
           <Slider {...settings}>
             {data.map((d, index) => <HomeSlide key={index} {...d} />)}
           </Slider>
         </div>
-      <span className={styles.scroll}/>
+        <span className={styles.scroll}
+              onClick={() => this.props.toggleHomeBoard()} />
       </div>
-
     )
   }
 }
 
-export default HomeCarousel
-
+export default windowSize(HomeCarousel)

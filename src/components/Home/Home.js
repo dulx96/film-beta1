@@ -1,8 +1,9 @@
 import React from 'react'
-import windowSize from 'react-window-size'
 
 //import component
 import HomeCarousel from '../HomeCarousel/'
+import HomeBoard from '../HomeBoard'
+
 //import style
 import * as style from './Home.less'
 
@@ -10,10 +11,11 @@ class Home extends React.Component {
   render () {
     return (
       <div>
-        <HomeCarousel screenWidth={this.props.windowWidth} />
+        <HomeCarousel />
+        <HomeBoard />
       </div>
     )
   }
 }
 
-export default windowSize(Home)
+export default Home
