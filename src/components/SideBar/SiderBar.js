@@ -4,7 +4,6 @@ import React from 'react'
 import SideBarWideScreen from './SideBarWideScreen'
 import SideBarSmallScreen from './SidebarSmallScreen'
 //import plugins
-import windowSize from 'react-window-size'
 //import const
 import * as responsive from '../../constants/responsive'
 
@@ -22,9 +21,9 @@ class SideBar extends React.Component {
   componentWillReceiveProps (nextProps) {
     nextProps.windowWidth !== this.props.windowWidth && (
       nextProps.windowWidth > responsive.sideBarSwitchPoint &&
-      ((this.props.windowWidth < responsive.sideBarSwitchPoint ||
+      ((this.props.windowWidth < responsive.sideBarSwitchPoint &&
         this.props.sb_sml_scrIsActive) &&
-        this.props.toggleSideBar())
+        this.props.toggleSideBar(0))
     )
   }
 
@@ -38,4 +37,4 @@ class SideBar extends React.Component {
   }
 }
 
-export default windowSize(SideBar)
+export default SideBar

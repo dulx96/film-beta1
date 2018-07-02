@@ -1,36 +1,41 @@
-@import "../TopBar/TopBar";
-
-.SideBarCommon {
-  width: 240px;
-  height: 100vh;
-  position: absolute;
+@import "../Styles/Layout/layout";
+.sb-common {
+  width: @sidebar-width;
   top: 0;
   transform: translateX(-100%);
   transition: 0.4s;
   &.active {
     transform: translateX(0);
   }
+  &:hover {
+    overflow-y: scroll;
+  }
 }
 
-.SideBarWideScreen {
-  .SideBarCommon;
-  padding-top: @topBarHeight;
+.sb-wd-scr {
+  .sb-common;
+  height: 100%;
+  position: absolute;
 }
 
-.SideBarSmallScreen {
-  .SideBarCommon;
-  top: -@topBarHeight;
+.sb-sm-scr {
+  //TODO loi fixed position khi parent co transform
+  .sb-common;
+  position: absolute;
+  height: calc(100% + @top-bar-height);
+  top: -@top-bar-height;
+  left: 0;
   .header {
     width: 100%;
-    height: @topBarHeight;
+    height: @top-bar-height;
   }
-  .blurContent {
+  .blur-content {
     position: absolute;
     top: 0;
-    left: 0;
+    left: @sidebar-width;
     height: 100vh;
-    width: calc(100vh - 240px);
-    background: black;
-    
+    width: calc(100vw - @sidebar-width);
+    background: rgba(220, 220, 220, 0.63);
+
   }
 }

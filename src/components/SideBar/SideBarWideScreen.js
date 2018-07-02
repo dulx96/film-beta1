@@ -10,7 +10,7 @@ import * as styles from './SideBar.less'
 
 const SideBarWideScreen = ({isVisible}) => (
   <div className={classNames({
-    [styles.SideBarWideScreen]: true,
+    [styles['sb-wd-scr']]: true,
     [styles.active]: isVisible
   })}>
     <MenuSideBar />

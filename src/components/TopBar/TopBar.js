@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 //import component
-import { IconSearch } from '../Icons'
+import { IconSearch } from '../Styles/Icons'
 
 //import plugins
 import windowSize from 'react-window-size'

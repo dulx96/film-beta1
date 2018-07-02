@@ -1,21 +1,25 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 //import component
 import HomeCarousel from '../HomeCarousel/'
 import HomeBoard from '../HomeBoard'
 
 //import style
-import * as style from './Home.less'
+import * as styles from './Home.less'
 
 class Home extends React.Component {
   render () {
     return (
-      <div>
+      <div className={styles.wrap}>
         <HomeCarousel />
         <HomeBoard />
       </div>
     )
   }
+}
+
+Home.propTypes = {
+  toggleHomeBoard: PropTypes.func,
 }
 
 export default Home

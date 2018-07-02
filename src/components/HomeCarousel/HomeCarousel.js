@@ -53,7 +53,9 @@ class HomeCarousel extends Component {
     const data = this.props.data
     return (
       <div className={styles.wrap}
-           style={{backgroundImage: `url(${background})`}}>
+           style={{backgroundImage: `url(${background})`}}
+           onWheel={() => !this.props.homeBoardIsActive && this.props.toggleHomeBoard()}
+          >
         <div className={styles.content}>
           <Slider {...settings}>
             {data.map((d, index) => <HomeSlide key={index} {...d} />)}

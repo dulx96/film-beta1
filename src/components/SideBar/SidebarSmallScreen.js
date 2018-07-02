@@ -10,7 +10,7 @@ import * as styles from './SideBar.less'
 
 const SideBarSmallScreen = ({isVisible, toggleSideBar}) => (
   <div className={classNames({
-    [styles.SideBarSmallScreen]: true,
+    [styles['sb-sm-scr']]: true,
     [styles.active]: isVisible,
   })}>
     <div className={styles.header}>
@@ -18,7 +18,7 @@ const SideBarSmallScreen = ({isVisible, toggleSideBar}) => (
     </div>
     <MenuSideBar />
     {isVisible &&
-    <div className={styles.blurContent} onClick={() => toggleSideBar(0)} />}
+    <div className={styles['blur-content']} onClick={() => toggleSideBar(0)} />}
   </div>
 )
 SideBarSmallScreen.propTypes = {
