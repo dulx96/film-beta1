@@ -5,7 +5,8 @@ import { IconSearch } from '../Styles/Icons'
 
 //import plugins
 import windowSize from 'react-window-size'
-
+//import constant
+import CDN from '../../constants/cdn'
 //import style
 import * as styles from './TopBar.less'
 
@@ -33,8 +34,7 @@ const TopBar = (
         <div
           className={fetchUserSuccess ? styles.avatar : styles['avatar-onload']}
           style={fetchUserSuccess ? {
-            backgroundImage: `url(${require(
-              `../../resources/CircleImage/${user.ava}`)})`,
+            backgroundImage: `url(${CDN + user.ava})`,
           } : {}}>
         </div>
       </div>

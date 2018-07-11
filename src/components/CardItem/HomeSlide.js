@@ -2,16 +2,17 @@ import PropTypes from 'prop-types'
 import React from 'react'
 // import components
 import IconStar from 'react-icons/lib/ti/star'
+//import constant
+import CDN from '../../constants/cdn'
 //import styles
 import * as styles from './HomeSilde.less'
 
 const HomeSlide = props => {
-  const imageAdd = require(`../../resources/Slide/${props.imageId}`)
   return (
     <div className={styles.wrap}>
       <div className={styles.content}>
         <div className={styles.image}
-             style={{backgroundImage: `url(${imageAdd})`}}>
+             style={{backgroundImage: `url(${CDN + props.imageId})`}}>
           <a>
 
           </a>

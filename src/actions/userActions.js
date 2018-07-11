@@ -6,8 +6,7 @@ export const fetchUserSuccess = (user) => {
     user,
   }
 }
-
+const userDataMock = {ava: '/ava/thoa.jpg'}
 export const fetchUser = () => dispatch => {
-  const user = {ava: 'thoa.jpg'}
-  dispatch(fetchUserSuccess(user))
+  dispatch(fetchUserSuccess(userDataMock))
 }
