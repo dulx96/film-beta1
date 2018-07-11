@@ -92,18 +92,19 @@ export default class PlayPage extends React.Component {
           <div
             className={styles.player}>
             <Player
+              autoPlay={true}
               ref={this.player}
               src={
                 {
                   en: data.OriVideoSrc,
                   vi: data.ViVideoSrc,
                 }
-              } autoPlay />
+              } />
           </div>
           <SubtitleBar subs={this.state.subJALoading ? [] : this.state.subs.JA}
-          isLoading={this.state.subJALoading}
-          seek={this.seek}
-          currentSubIndex={this.state.currentSubIndex}/>
+                       isLoading={this.state.subJALoading}
+                       seek={this.seek}
+                       currentSubIndex={this.state.currentSubIndex} />
         </div>
     )
   }

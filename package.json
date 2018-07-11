@@ -78,7 +78,6 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "postbuild": "react-snap",
     "test": "node scripts/test.js --env=jsdom",
     "flow": "flow"
   },
