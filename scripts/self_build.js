@@ -18,7 +18,7 @@ const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const webpack = require('webpack');
-const config = require('../config/webpack.config.prod');
+const self_config = require('../config/webpack.self_config.prod');
 const paths = require('../config/paths');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
@@ -42,7 +42,7 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
-measureFileSizesBeforeBuild(paths.appBuild)
+measureFileSizesBeforeBuild(paths.appDist)
   .then(previousFileSizes => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
@@ -83,7 +83,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
 
       const appPackage = require(paths.appPackageJson);
       const publicUrl = paths.publicUrl;
-      const publicPath = config.output.publicPath;
+      const publicPath = self_config.output.publicPath;
       const buildFolder = path.relative(process.cwd(), paths.appBuild);
       printHostingInstructions(
         appPackage,
@@ -104,7 +104,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
 function build(previousFileSizes) {
   console.log('Creating an optimized production build...');
 
-  let compiler = webpack(config);
+  let compiler = webpack(self_config);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       if (err) {
