@@ -20,6 +20,7 @@ export default class PlayPage extends React.Component {
       subs: null,
       currentSubIndex: -1,
       subJALoading: true,
+      getMoviePlayDataSuccess: false,
     }
     this.player = React.createRef()
     this.seek = this.seek.bind(this)
@@ -42,7 +43,7 @@ export default class PlayPage extends React.Component {
 
   componentDidUpdate (prevProps, prevState) {
     //subscribe state after player rendered only
-    if (!prevProps.getMoviePlayDataSuccess &&
+    if (!prevState.getMoviePlayDataSuccess &&
       this.props.getMoviePlayDataSuccess) {
       this.player.current.subscribeToStateChange(
         this.handleStateChange.bind(this))
