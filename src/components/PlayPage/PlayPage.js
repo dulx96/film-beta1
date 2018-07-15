@@ -35,16 +35,31 @@ export default class PlayPage extends React.Component {
   //   //   }
   //   // } else return null
   // }
+  // static getDerivedStateFromProps (nextProps, prevState) {
+  //   if (!prevState.getMoviePlayDataSuccess &&
+  //     nextProps.getMoviePlayDataSuccess) {
+  //     console.log("yes")
+  //     return {getMoviePlayDataSuccess: true}
+  //   } else {
+  //     return null
+  //   }
+  // }
 
   componentDidMount () {
     //get movie data after initial render
+    //TODO bug second time play will not update cause  state of redux not change
     this.props.getMoviePlayData()
+    ///trick, dangerous
+    this.setState({getMoviePlayDataSuccess: true})
+    console.log('mounted')
   }
-
   componentDidUpdate (prevProps, prevState) {
     //subscribe state after player rendered only
+    console.log('updated')
+    console.log(prevState.getMoviePlayDataSuccess)
     if (!prevState.getMoviePlayDataSuccess &&
       this.props.getMoviePlayDataSuccess) {
+      console.log('ref')
       this.player.current.subscribeToStateChange(
         this.handleStateChange.bind(this))
       if (prevState.subJALoading) {
