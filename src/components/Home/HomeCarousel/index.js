@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getHomeCarousel } from '../../actions/homeCarouselActions'
-import { toggleHomeBoard } from '../../actions/homeBoardActions'
+import { getHomeCarousel } from '../../../actions/homeCarouselActions'
+import { toggleHomeBoard } from '../../../actions/homeBoardActions'
 import HomeCarousel from './HomeCarousel'
 
 const mapStateToProps = ({

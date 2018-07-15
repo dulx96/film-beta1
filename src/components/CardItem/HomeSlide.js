@@ -1,57 +1,58 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 // import components
-import IconStar from 'react-icons/lib/ti/star'
 //import constant
 import CDN from '../../constants/cdn'
 //import styles
 import * as styles from './HomeSilde.less'
+import { IconImdb } from '../Styles/Icons'
+import { IconPlay } from '../Styles/Icons'
 
-const HomeSlide = props => {
-  return (
-    <div className={styles.wrap}>
-      <div className={styles.content}>
-        <div className={styles.image}
-             style={{backgroundImage: `url(${CDN + props.imageId})`}}>
-          <a>
+class HomeSlide extends React.PureComponent {
+  render () {
 
-          </a>
-        </div>
+    return (
+      <div className={styles.wrap}>
+        <div className={styles.content}>
+          <img src={`${CDN + this.props.imageId}`}
+               alt={this.props.title} />
 
-        <div className={styles.info}>
-          <h2>
-            {props.title}
-          </h2>
-          <div className={styles.star}>
-            <IconStar size={20} />
-            <IconStar size={20} />
-            <IconStar size={20} />
-            <IconStar size={20} />
-            <IconStar size={20} />
-            <p>{props.views} Views</p>
+          <div className={styles.info}>
+            <section>
+              <h2>
+                {this.props.title}
+              </h2>
+              <div style={{flex: 1}} />
+              <div className={styles.imdb}>
+                <IconImdb size={60} />
+                <p>9.5</p>
+              </div>
+            </section>
+            <p>
+              {this.props.details}
+            </p>
+            <div style={{flex: 1}} />
+            <p>Phụ đề:</p>
+            <div className={styles.sub}>
+              {['V', 'J', 'E'].map(
+                (e, index) => <div><i key={index}> {e} </i></div>)}
+            </div>
+            <div className={styles.options}>
+              <a>
+                Chi tiết
+              </a>
+              <a>
+                <IconPlay size={40} />
+                <span>Xem Phim</span>
+              </a>
+            </div>
+
+
           </div>
-          <p className={styles.details}>
-            {props.details}
-          </p>
-          <div style={{flex: 1}} />
-          <div className={styles.sub}>
-            <h3>Subtitle:</h3>
-            {props.sub.map((e, index) => <i key={index}> {e} </i>)}
-          </div>
-          <div className={styles.options}>
-            <a>
-              Details
-            </a>
-            <a>
-              Play
-            </a>
-          </div>
-
-
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 HomeSlide.propTypes = {

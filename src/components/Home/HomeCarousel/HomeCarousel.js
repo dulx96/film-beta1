@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 
 //import components
-import { HomeSlide } from '../CardItem'
+import { HomeSlide } from '../../CardItem/index'
 //import plugins
 import Slider from 'react-slick'
 import windowSize from 'react-window-size'
 //import constant
-import CDN from '../../constants/cdn'
+import CDN from '../../../constants/cdn'
 // import styles
 import * as styles from './HomeCarousel.less'
 import './Carousel.css'
 
 class HomeCarousel extends Component {
-  componentWillMount () {
+  componentDidMount () {
     this.props.getHomeCarousel()
   }
 
@@ -52,7 +52,7 @@ class HomeCarousel extends Component {
     const data = this.props.data
     return (
       <div className={styles.wrap}
-           style={{backgroundImage: `url(${CDN + '/images/1.jpg'})`}}
+           style={{backgroundImage: `url(${CDN + '/images/background.jpg'})`}}
            onWheel={() => !this.props.homeBoardIsActive &&
              this.props.toggleHomeBoard()}
       >

@@ -2,14 +2,14 @@
 import React from 'react'
 import PropsTypes from 'prop-types'
 //import component
-import SideBar from '../SideBar'
-import HomeCategory from '../HomeCategory'
+import SideBar from '../../SideBar/index'
+import HomeCategory from '../HomeCategory/index'
 //import plugin
 import windowSize from 'react-window-size'
 import classNames from 'classnames'
 import WheelReact from 'wheel-react'
 //import constant
-import * as responsive from '../../constants/responsive'
+import * as responsive from '../../../constants/responsive'
 //import style
 import * as styles from './HomeBoard.less'
 

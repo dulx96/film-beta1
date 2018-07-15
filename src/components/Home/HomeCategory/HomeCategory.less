@@ -1,4 +1,4 @@
-@import "../Styles/Layout/layout";
+@import "../../Styles/Layout/layout";
 
 //TODO variable must be number instead of px loi vcl
 .wrap {
@@ -23,7 +23,6 @@
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  background: #00a7ff;
   &.sb-wd-scr-active {
     @media (min-width: 1276px) {
       width: calc(floor((1276px - 10px - @sidebar-width)/(@movie-card-width-num + @movie-card-marginLR-num*2)) * (@movie-card-width-num + 2 * @movie-card-marginLR-num));

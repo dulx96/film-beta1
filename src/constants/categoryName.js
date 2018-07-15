@@ -1,5 +1,1 @@
-export const CAT1 = 'Hot'
-export const CAT2 = 'History'
-export const CAT3 = 'News'
-export const CAT4 = 'Suggest'
-export const CAT5 = 'JLPT'
+export const CAT_LIST = ['Hot','History','News','Suggest','JLPT']
