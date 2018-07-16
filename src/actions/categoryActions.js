@@ -53,7 +53,19 @@ const cat1DataMock = [
   },
 
 ]
-const query = `{movies(id_movie:5000) {title_jp description thumbnail}}`
+const query = `{
+ moviespaginated(count: 5, page: 2){
+   movies{
+     titles{
+       romaji
+       original
+     }
+     seasons{
+       season
+     }
+   }
+ }
+}`
 
 export const getCategoryDataSuccess = (name, data) => ({
   type: actions.GET_CATEGORY_DATA_SUCCESS,
@@ -67,4 +79,4 @@ export const getCategoryData = (name) => dispatch =>
     headers: {'Content-Type': 'application/json'},
   })
     .then(res => res.json())
-    .then(data => dispatch(getCategoryDataSuccess(name, data.data.movies)))
+    .then(data => dispatch(getCategoryDataSuccess(name, data.data.moviespaginated.movies)))

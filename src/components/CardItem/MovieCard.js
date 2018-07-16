@@ -13,13 +13,13 @@ class MovieCard extends React.PureComponent {
     return (
       <div className={styles.wrap}>
         <img src='http://cdn.ekiio.com/images/slide14.jpg'
-             alt={this.props.title_en} />
+             alt={this.props.titles.romaji} />
         <Link to='/movie/play'>
           <IconPlay className={styles['play-icon']}
                     size={80} />
         </Link>
         <div className={styles.info}>
-          <h3>{this.props.title_en}</h3>
+          <h3>{this.props.titles.romaji}</h3>
           <p>{['Actions', 'Adventure'].join(', ')}</p>
           <section>
             <p className={styles['imdb-score']}>

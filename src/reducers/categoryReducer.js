@@ -1,8 +1,8 @@
 import * as actions from '../constants/actionTypes'
-import * as category from '../constants/categoryName'
 import { CAT_LIST } from '../constants/categoryName'
 //khoi tao so cat
-const CAT = category.CAT_LIST.map(cat => ({name: cat, getCategoryDataSuccess: false, data: []}))
+const CAT = CAT_LIST.map(
+  cat => ({name: cat, getCategoryDataSuccess: false, data: []}))
 export default (state = {CAT: CAT}, action) => {
   switch (action.type) {
     case actions.GET_CATEGORY_DATA_SUCCESS: {
@@ -23,6 +23,5 @@ export default (state = {CAT: CAT}, action) => {
     }
     default:
       return state
-
   }
 }
