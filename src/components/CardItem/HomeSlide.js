@@ -21,8 +21,7 @@ class HomeSlide extends React.PureComponent {
             <section>
               <h2>
                 {this.props.title}
-              </h2>
-              <div style={{flex: 1}} />
+              </h2>              <div style={{flex: 1}} />
               <div className={styles.imdb}>
                 <IconImdb size={60} />
                 <p>9.5</p>
