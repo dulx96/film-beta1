@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 //import component
-import SubtitleBar from '../SubtitleBar'
+import SubtitleBar from './SubtitleBar'
 //import plugins
 import { Player } from 'ekiio-video-react'
 import parser from 'subtitles-parser'
@@ -13,7 +13,7 @@ import CDN from '../../constants/cdn'
 import '../../../node_modules/ekiio-video-react/dist/ekiio-video-react.css'
 import * as styles from './PlayPage.less'
 
-export default class PlayPage extends React.Component {
+export default class PlayPage extends React.PureComponent {
   constructor (props) {
     super(props)
     this.state = {
@@ -49,22 +49,20 @@ export default class PlayPage extends React.Component {
     //get movie data after initial render
     //TODO bug second time play will not update cause  state of redux not change
     this.props.getMoviePlayData()
-    ///trick, dangerous
+    //trick, dangerous
     this.setState({getMoviePlayDataSuccess: true})
-    console.log('mounted')
   }
+
   componentDidUpdate (prevProps, prevState) {
-    //subscribe state after player rendered only
-    console.log('updated')
-    console.log(prevState.getMoviePlayDataSuccess)
     if (!prevState.getMoviePlayDataSuccess &&
       this.props.getMoviePlayDataSuccess) {
-      console.log('ref')
+      //subscribe player state change handle  after player rendered only
       this.player.current.subscribeToStateChange(
-        this.handleStateChange.bind(this))
+        this.handleStatePlayerChange.bind(this))
+
+
+      //only fetch sub when got movie data
       if (prevState.subJALoading) {
-        //only fetch sub when got movie data
-        console.log(CDN + this.props.moviePlayData.JASubSrc)
         fetch(CDN + this.props.moviePlayData.JASubSrc)
           .then(res => res.text())
           .then(data => {
@@ -76,26 +74,27 @@ export default class PlayPage extends React.Component {
 
   }
 
-  handleStateChange (state, prevState) {
+// fire when video player state change
+  handleStatePlayerChange (state, prevState) {
     //get sub index depend on current time
     //TODO improve performance sub search
     const {subs, currentSubIndex, subJALoading} = this.state
-    let tempIndex = -1
+
     if (!subJALoading && state.currentTime !== prevState.currentTime) {
+      let tempIndex = -1
       tempIndex = subs.JA.slice(0, subs.JA.length - 1).findIndex(
         (sub) => sub.startTime / 1000 <= state.currentTime &&
           sub.endTime / 1000 >= state.currentTime,
       )
+      if (tempIndex !== currentSubIndex) {
+        this.setState({currentSubIndex: tempIndex})
+      }
     }
-    if (tempIndex !== currentSubIndex) {
-      this.setState({currentSubIndex: tempIndex})
-    }
+
   }
 
   seek (seconds) {
-    return () => {
-      this.player.current.seek(seconds)
-    }
+    this.player.current.seek(seconds)
   }
 
   render () {
@@ -125,6 +124,7 @@ export default class PlayPage extends React.Component {
     )
   }
 }
+
 PlayPage.propTypes = {
   getMoviePlayDataSuccess: PropTypes.bool,
   moviePlayData: PropTypes.object,
