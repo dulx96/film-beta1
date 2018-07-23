@@ -21,9 +21,17 @@ export default class PlayPage extends React.PureComponent {
       currentSubIndex: -1,
       subJALoading: true,
       getMoviePlayDataSuccess: false,
+      enableViSub: false,
     }
     this.player = React.createRef()
     this.seek = this.seek.bind(this)
+    this.toggleSubVi = this.toggleSubVi.bind(this)
+  }
+
+  toggleSubVi () {
+    let currentTime = this.refs.player.getState().player.currentTime
+    this.setState(prevState => ({enableViSub: !prevState.enableViSub}),
+      () => this.refs.player.seek(currentTime))
   }
 
   // static getDerivedStateFromProps (nextProps, prevState) {
@@ -59,7 +67,6 @@ export default class PlayPage extends React.PureComponent {
       //subscribe player state change handle  after player rendered only
       this.player.current.subscribeToStateChange(
         this.handleStatePlayerChange.bind(this))
-
 
       //only fetch sub when got movie data
       if (prevState.subJALoading) {
@@ -100,6 +107,10 @@ export default class PlayPage extends React.PureComponent {
   render () {
     const fetchedData = this.props.getMoviePlayDataSuccess
     const data = this.props.moviePlayData
+    const src = {
+      en: 'https://lh3.googleusercontent.com/kMCqKzdGU_McxkYrkYuwJw3pa_Cz-kluTxtx4kqUQfj6V9klTjTXry70U3mPjjAG4KWWlz9SK1ACSOLcVA=m22',
+      vi: 'https://lh3.googleusercontent.com/kMCqKzdGU_McxkYrkYuwJw3pa_Cz-kluTxtx4kqUQfj6V9klTjTXry70U3mPjjAG4KWWlz9SK1ACSOLcVA=m22',
+    }
     return (
       !fetchedData ? <div>loading</div> :
 
@@ -107,14 +118,11 @@ export default class PlayPage extends React.PureComponent {
           <div
             className={styles.player}>
             <Player
-              autoPlay={true}
               ref={this.player}
-              src={
-                {
-                  en: data.OriVideoSrc,
-                  vi: data.ViVideoSrc,
-                }
-              } />
+              src={this.state.enableViSub ? src.vi : src.en}
+              poster="http://cdn.ekiio.com/images/1.jpg"
+              toggleSubVi={this.toggleSubVi}
+            />
           </div>
           <SubtitleBar subs={this.state.subJALoading ? [] : this.state.subs.JA}
                        isLoading={this.state.subJALoading}
