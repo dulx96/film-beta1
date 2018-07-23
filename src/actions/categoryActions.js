@@ -77,7 +77,8 @@ export const getCategoryData = (name) => dispatch =>
   fetch(API_DOMAIN, {
     method: 'POST',
     body: JSON.stringify({query: query}),
-    // headers: {'Content-Type': 'application/json'},
+    headers: {'Content-Type': 'application/json'},
   })
     .then(res => res.json())
-    .then(data => dispatch(getCategoryDataSuccess(name, data.data.moviespaginated.movies)))
+    .then(data => dispatch(
+      getCategoryDataSuccess(name, data.data.moviespaginated.movies)))
