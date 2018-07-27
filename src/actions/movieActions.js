@@ -16,7 +16,7 @@ const movieDetailsMock = {
     genre: '',
     actor: '',
   },
-  subAvaiableList:['en','vi','ja'],
+  subAvaiableList: ['en', 'vi', 'ja'],
   thumbnailUrl: '/movie/id/images/thumbnail.jpg',
   posterUrl: '/movie/id/images/poster.jpg',
 }
@@ -24,6 +24,11 @@ export const getMoviePlayDataSuccess = (data) => (
   {
     type: actions.GET_MOVIE_PLAY_DATA_SUCCESS,
     data,
+  }
+)
+export const getMoviePlayDataFailed = () => (
+  {
+    type: actions.GET_MOVIE_PLAY_DATA_FAILED,
   }
 )
 

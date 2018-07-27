@@ -2,7 +2,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 //import component
+import PlayerSettingPopup from './PlayerSettingPopup'
 import SubtitleBar from './SubtitleBar'
+import JaSubView from './JaSubView'
+
 //import plugins
 import { Player } from 'ekiio-video-react'
 import parser from 'subtitles-parser'
@@ -10,8 +13,9 @@ import parser from 'subtitles-parser'
 //import constant
 import CDN from '../../constants/cdn'
 //import styles
-import '../../../node_modules/ekiio-video-react/dist/ekiio-video-react.css'
+import '../../../node_modules/ekiio-video-react/lib/styles/ekiio-video-react.css'
 import * as styles from './PlayPage.less'
+import classNames from 'classnames'
 
 export default class PlayPage extends React.PureComponent {
   constructor (props) {
@@ -22,16 +26,13 @@ export default class PlayPage extends React.PureComponent {
       subJALoading: true,
       getMoviePlayDataSuccess: false,
       enableViSub: false,
+      enableJaSub: true,
+      settingActive: false,
     }
     this.player = React.createRef()
     this.seek = this.seek.bind(this)
-    this.toggleSubVi = this.toggleSubVi.bind(this)
-  }
-
-  toggleSubVi () {
-    let currentTime = this.refs.player.getState().player.currentTime
-    this.setState(prevState => ({enableViSub: !prevState.enableViSub}),
-      () => this.refs.player.seek(currentTime))
+    this.toggleSetting = this.toggleSetting.bind(this)
+    this.toggleSub = this.toggleSub.bind(this)
   }
 
   // static getDerivedStateFromProps (nextProps, prevState) {
@@ -55,10 +56,11 @@ export default class PlayPage extends React.PureComponent {
 
   componentDidMount () {
     //get movie data after initial render
-    //TODO bug second time play will not update cause  state of redux not change
     this.props.getMoviePlayData()
-    //trick, dangerous
-    this.setState({getMoviePlayDataSuccess: true})
+  }
+
+  componentWillUnmount () {
+    this.props.getMoviePlayDataFailed()
   }
 
   componentDidUpdate (prevProps, prevState) {
@@ -86,7 +88,6 @@ export default class PlayPage extends React.PureComponent {
     //get sub index depend on current time
     //TODO improve performance sub search
     const {subs, currentSubIndex, subJALoading} = this.state
-
     if (!subJALoading && state.currentTime !== prevState.currentTime) {
       let tempIndex = -1
       tempIndex = subs.JA.slice(0, subs.JA.length - 1).findIndex(
@@ -104,25 +105,65 @@ export default class PlayPage extends React.PureComponent {
     this.player.current.seek(seconds)
   }
 
+  toggleSub (lan) {
+    switch (lan) {
+      case 'vi': {
+        let currentTime = this.player.current.getState().player.currentTime
+        this.setState(prevState => ({enableViSub: !prevState.enableViSub}),
+          () => this.player.current.seek(currentTime))
+        break
+      }
+      case 'ja': {
+        this.setState(prevState => ({enableJaSub: !prevState.enableJaSub}))
+        break
+      }
+      default:
+        return
+    }
+
+  }
+
+  toggleSetting () {
+    this.setState(prevState => ({settingActive: !prevState.settingActive}))
+
+  }
+
   render () {
     const fetchedData = this.props.getMoviePlayDataSuccess
     const data = this.props.moviePlayData
     const src = {
-      en: 'https://lh3.googleusercontent.com/kMCqKzdGU_McxkYrkYuwJw3pa_Cz-kluTxtx4kqUQfj6V9klTjTXry70U3mPjjAG4KWWlz9SK1ACSOLcVA=m22',
-      vi: 'https://lh3.googleusercontent.com/kMCqKzdGU_McxkYrkYuwJw3pa_Cz-kluTxtx4kqUQfj6V9klTjTXry70U3mPjjAG4KWWlz9SK1ACSOLcVA=m22',
+      en: 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1863899856963533_1285598765276725248_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ==&rl=1500&vabr=525&oh=85555246bf0bcef949486a8529c14a9c&oe=5B5B6C7C',
+      vi: 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1863899856963533_1285598765276725248_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ==&rl=1500&vabr=525&oh=85555246bf0bcef949486a8529c14a9c&oe=5B5B6C7C',
     }
     return (
       !fetchedData ? <div>loading</div> :
 
         <div className={styles.wrap}>
           <div
-            className={styles.player}>
+            className={classNames({
+              [styles.player]: true,
+            })}>
             <Player
               ref={this.player}
               src={this.state.enableViSub ? src.vi : src.en}
               poster="http://cdn.ekiio.com/images/1.jpg"
-              toggleSubVi={this.toggleSubVi}
-            />
+              toggleSetting={this.toggleSetting}
+            >
+              <PlayerSettingPopup settingActive={this.state.settingActive}
+                                  toggleSetting={this.toggleSetting}
+                                  enableViSub={this.state.enableViSub}
+                                  enableJaSub={this.state.enableJaSub}
+                                  toggleSub={this.toggleSub} />
+              <JaSubView
+                data={this.state.subJALoading
+                  ? ''
+                  : this.state.currentSubIndex < 0
+                    ? ''
+                    : this.state.subs.JA[this.state.currentSubIndex].text}
+                enableJaSub={this.state.enableJaSub}
+                enableViSub={this.state.enableViSub} />
+
+            </Player>
           </div>
           <SubtitleBar subs={this.state.subJALoading ? [] : this.state.subs.JA}
                        isLoading={this.state.subJALoading}

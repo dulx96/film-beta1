@@ -1,0 +1,24 @@
+.wrap {
+  position: absolute;
+  z-index: 2;
+  display: inline-block;
+  max-width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 25px;
+  visibility: hidden;
+
+  &.fullscreen {
+    font-size: 35px;
+  }
+  &.enable-ja-sub {
+    visibility: visible;
+    top: unset;
+    bottom: 50px;
+  }
+  &.enable-vi-sub {
+    bottom: unset;
+    top: 10%;
+  }
+}
