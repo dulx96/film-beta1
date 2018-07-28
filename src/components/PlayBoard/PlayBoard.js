@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react'
 import PropTypes from 'prop-types'
 //import component
@@ -13,11 +12,12 @@ import parser from 'subtitles-parser'
 //import constant
 import CDN from '../../constants/cdn'
 //import styles
-import '../../../node_modules/ekiio-video-react/lib/styles/ekiio-video-react.css'
-import * as styles from './PlayPage.less'
+// import '../../../node_modules/ekiio-video-react/lib/styles/ekiio-video-react.css'
+import './ekiio-video-react.css'
+import * as styles from './PlayBoard.less'
 import classNames from 'classnames'
 
-export default class PlayPage extends React.PureComponent {
+export default class PlayBoard extends React.PureComponent {
   constructor (props) {
     super(props)
     this.state = {
@@ -132,49 +132,55 @@ export default class PlayPage extends React.PureComponent {
     const fetchedData = this.props.getMoviePlayDataSuccess
     const data = this.props.moviePlayData
     const src = {
-      en: 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1863899856963533_1285598765276725248_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ==&rl=1500&vabr=525&oh=85555246bf0bcef949486a8529c14a9c&oe=5B5B6C7C',
+      en: 'https://video.fsgn2-1.fna.fbcdn.net/v/t42.9040-2/10000000_2103567539861106_921127020199411712_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=662&oh=0bd492e8a35c8ae9689c41c1fc5f667d&oe=5B5EDC03',
       vi: 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1863899856963533_1285598765276725248_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ==&rl=1500&vabr=525&oh=85555246bf0bcef949486a8529c14a9c&oe=5B5B6C7C',
     }
     return (
       !fetchedData ? <div>loading</div> :
 
         <div className={styles.wrap}>
-          <div
-            className={classNames({
-              [styles.player]: true,
-            })}>
-            <Player
-              ref={this.player}
-              src={this.state.enableViSub ? src.vi : src.en}
-              poster="http://cdn.ekiio.com/images/1.jpg"
-              toggleSetting={this.toggleSetting}
-            >
-              <PlayerSettingPopup settingActive={this.state.settingActive}
-                                  toggleSetting={this.toggleSetting}
-                                  enableViSub={this.state.enableViSub}
-                                  enableJaSub={this.state.enableJaSub}
-                                  toggleSub={this.toggleSub} />
-              <JaSubView
-                data={this.state.subJALoading
-                  ? ''
-                  : this.state.currentSubIndex < 0
+          <div className={classNames(styles['play-page-col-primary'])}>
+            <div
+              className={classNames({
+                [styles.player]: true,
+              })}>
+              <Player
+                ref={this.player}
+                src={this.state.enableViSub ? src.vi : src.en}
+                poster="http://cdn.ekiio.com/images/1.jpg"
+                toggleSetting={this.toggleSetting}
+              >
+                <PlayerSettingPopup settingActive={this.state.settingActive}
+                                    toggleSetting={this.toggleSetting}
+                                    enableViSub={this.state.enableViSub}
+                                    enableJaSub={this.state.enableJaSub}
+                                    toggleSub={this.toggleSub} />
+                <JaSubView
+                  data={this.state.subJALoading
                     ? ''
-                    : this.state.subs.JA[this.state.currentSubIndex].text}
-                enableJaSub={this.state.enableJaSub}
-                enableViSub={this.state.enableViSub} />
+                    : this.state.currentSubIndex < 0
+                      ? ''
+                      : this.state.subs.JA[this.state.currentSubIndex].text}
+                  enableJaSub={this.state.enableJaSub}
+                  enableViSub={this.state.enableViSub} />
 
-            </Player>
+              </Player>
+            </div>
           </div>
-          <SubtitleBar subs={this.state.subJALoading ? [] : this.state.subs.JA}
-                       isLoading={this.state.subJALoading}
-                       seek={this.seek}
-                       currentSubIndex={this.state.currentSubIndex} />
+
+          <div className={styles['play-page-col-secondary']}>
+            <SubtitleBar
+              subs={this.state.subJALoading ? [] : this.state.subs.JA}
+              isLoading={this.state.subJALoading}
+              seek={this.seek}
+              currentSubIndex={this.state.currentSubIndex} />
+          </div>
         </div>
     )
   }
 }
 
-PlayPage.propTypes = {
+PlayBoard.propTypes = {
   getMoviePlayDataSuccess: PropTypes.bool,
   moviePlayData: PropTypes.object,
 }

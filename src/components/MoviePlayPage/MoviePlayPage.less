@@ -1,0 +1,15 @@
+@import "../Styles/Layout/layout";
+
+.wrap {
+  width: 100vw;
+  position: fixed;
+  top: @top-bar-height;
+  left: 0;
+
+  .container {
+    max-width: calc(1280px + @col-secondary-width + @col-secondary-extra-padding + 3 * 24px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -6,7 +6,7 @@ import { fetchUser } from './actions/userActions'
 //import component
 import TopBar from './components/TopBar'
 import Home from './components/Home'
-import PlayPage from './components/PlayPage'
+import MoviePlayPage from './components/MoviePlayPage'
 //import style
 import './App.css'
 
@@ -21,7 +21,7 @@ class App extends Component {
         <div>
           <TopBar />
           <Route exact path="/" component={Home} />
-          <Route path="/movie/play" component={PlayPage} />
+          <Route path="/movie/play" component={MoviePlayPage} />
         </div>
       </Router>
     )

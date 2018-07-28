@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import PlayPage from './PlayPage'
+import PlayBoard from './PlayBoard'
 import {
   getMoviePlayData,
   getMoviePlayDataFailed,
@@ -15,4 +15,4 @@ const mapStateToProps = ({movieReducer}) => (
 const mapDispatchToProps = dispatch => bindActionCreators({
   getMoviePlayData, getMoviePlayDataFailed,
 }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(PlayPage)
+export default connect(mapStateToProps, mapDispatchToProps)(PlayBoard)

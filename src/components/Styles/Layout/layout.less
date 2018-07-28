@@ -1,4 +1,4 @@
-@top-bar-height: 52px;
+@top-bar-height: 56px;
 @sidebar-width: 240px;
 @movie-card-width: 210px;
 @movie-card-width-num: 210;
@@ -6,4 +6,37 @@
 @movie-card-marginLR: 7px;
 @movie-card-marginLR-num: 7;
 @movie-card-marginTB: 10px;
+
+//movie play page layout
+@player-ratio: 16/9;
+@col-secondary-extra-padding: 0px;
+@space-below-player: 136px;
+@non-player-height: calc(@top-bar-height + 24px + @space-below-player);
+@non-player-width: 3 * 24px + @col-secondary-extra-padding;
+@min-player-height: 240px;
+@min-player-width: @min-player-height * @player-ratio;
+@max-player-width: calc((100vh - @non-player-height) * @player-ratio);
+@col-secondary-width: 402px;
+@min-col-secondary-width: 300px;
+
+@player-width-lv1: 320px;
+@player-width-lv2: 375px;
+@player-width-lv3: 480px;
+@player-width-lv4: 640px;
+@player-width-lv4: 768px;
+
+.play-page-col-primary {
+  min-width: calc(@min-player-height * @player-ratio);
+  padding-top: 24px;
+  margin-left: 24px;
+  padding-right: 24px;
+  float: left;
+}
+
+.play-page-col-secondary {
+  width: @col-secondary-width;
+  min-width: @min-col-secondary-width;
+  padding-top: 24px;
+  float: left;
+}
 

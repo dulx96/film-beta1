@@ -51,7 +51,7 @@ export default class subtitleBar extends React.PureComponent {
     if (this.props.currentSubIndex >= 0 &&
       this.props.currentSubIndex !== prevProps.currentSubIndex) {
       this.state.isScrolling ||
-      scroller.scrollTo(`subItem${this.props.currentSubIndex - 5}`, {
+      scroller.scrollTo(`subItem${this.props.currentSubIndex - 15}`, {
         duration: 800,
         delay: 0,
         smooth: 'easeInOutQuart',

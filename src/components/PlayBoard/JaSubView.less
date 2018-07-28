@@ -7,6 +7,9 @@
   transform: translateX(-50%);
   text-align: center;
   font-size: 25px;
+  @media (max-width: 639px) {
+  font-size: 15px;
+  }
   visibility: hidden;
 
   &.fullscreen {
@@ -15,7 +18,7 @@
   &.enable-ja-sub {
     visibility: visible;
     top: unset;
-    bottom: 50px;
+    bottom: 15%;
   }
   &.enable-vi-sub {
     bottom: unset;
