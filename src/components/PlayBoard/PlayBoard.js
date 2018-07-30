@@ -132,8 +132,8 @@ export default class PlayBoard extends React.PureComponent {
     const fetchedData = this.props.getMoviePlayDataSuccess
     const data = this.props.moviePlayData
     const src = {
-      en: 'https://video.fsgn2-1.fna.fbcdn.net/v/t42.9040-2/10000000_2103567539861106_921127020199411712_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=662&oh=0bd492e8a35c8ae9689c41c1fc5f667d&oe=5B5EDC03',
-      vi: 'https://video.xx.fbcdn.net/v/t42.9040-2/10000000_1863899856963533_1285598765276725248_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ==&rl=1500&vabr=525&oh=85555246bf0bcef949486a8529c14a9c&oe=5B5B6C7C',
+      en: 'https://video.fsgn2-1.fna.fbcdn.net/v/t42.9040-2/10000000_640991629590017_8459784335468265472_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=636&oh=0571fa0716ddd3abf6a434d4ae87f988&oe=5B60A9F7',
+      vi: 'https://video.fsgn2-1.fna.fbcdn.net/v/t42.9040-2/10000000_640991629590017_8459784335468265472_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=636&oh=0571fa0716ddd3abf6a434d4ae87f988&oe=5B60A9F7',
     }
     return (
       !fetchedData ? <div>loading</div> :

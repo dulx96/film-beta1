@@ -2,10 +2,7 @@ import React from 'react'
 //import component
 import SubItem from './SubItem'
 //import plugins
-import {
-  Element,
-  scroller,
-} from 'react-scroll'
+import { Element, scroller } from 'react-scroll'
 //import styles
 import * as styles from './SubtitleBar.less'
 
@@ -43,7 +40,7 @@ export default class subtitleBar extends React.PureComponent {
     clearTimeout(this.controlScrollTimer)
     this.controlScrollTimer = setTimeout(() => {
       this.setState({isScrolling: false})
-    }, 1500)
+    }, 1200)
   }
 
   componentDidUpdate (prevProps) {
@@ -51,9 +48,9 @@ export default class subtitleBar extends React.PureComponent {
     if (this.props.currentSubIndex >= 0 &&
       this.props.currentSubIndex !== prevProps.currentSubIndex) {
       this.state.isScrolling ||
-      scroller.scrollTo(`subItem${this.props.currentSubIndex - 15}`, {
+      scroller.scrollTo(`subItem${this.props.currentSubIndex }`, {
         duration: 800,
-        delay: 0,
+        delay: 200,
         smooth: 'easeInOutQuart',
         containerId: 'subtitleBar',
       })
@@ -64,19 +61,23 @@ export default class subtitleBar extends React.PureComponent {
     const subItem = this.state.subs.map(
       (sub, index) => <Element key={index} name={`subItem${index}`}>
         <SubItem
+          index={index}
           active={this.props.currentSubIndex === index}
           sub={sub}
           onClick={this.onSubItemClick.bind(this)}
         />
       </Element>,
     )
+    const scrollContainerMustHaveStyle = {position: 'relative'} // need this to make react-scroll work like a charm
     return (
-      <div className={styles.wrap} >
+      <div className={styles.wrap}>
         {this.state.isLoading ? <div> loading sub </div> :
-          <div id='subtitleBar' className={styles['sub-container']}
-               onScroll={this.handleScroll}>
+          <Element id='subtitleBar'
+                   style={scrollContainerMustHaveStyle}
+                   className={styles['sub-container']}
+                   onScroll={this.handleScroll}>
             {subItem}
-          </div>
+          </Element>
         }
       </div>
     )

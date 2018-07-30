@@ -4,17 +4,19 @@ import classNames from 'classnames'
 //import styles
 import * as styles from './SubItem.less'
 
-class SubItem extends React.Component {
-  shouldComponentUpdate (nextProps) {
-    return nextProps.active !== this.props.active
-  }
-
+class SubItem extends React.PureComponent {
   render () {
     return (
-      <div className={classNames({[styles.active]: this.props.active})}
+      <div className={classNames({
+        [styles.wrap]: true,
+        [styles.active]: this.props.active,
+      })}
            onClick={() => this.props.onClick(this.props.sub.startTime / 1000)}>
-        <span>{this.props.sub.startTime / 1000}</span>
-        <p>{this.props.sub.text}</p>
+        <span className={classNames({
+          [styles['play-btn']]: true,
+          [styles[`bgc-${this.props.index % 10}`]]: true,
+        })} />
+        <div>{this.props.sub.text}</div>
       </div>
     )
   }
