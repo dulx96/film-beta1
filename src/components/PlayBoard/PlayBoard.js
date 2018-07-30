@@ -12,8 +12,7 @@ import parser from 'subtitles-parser'
 //import constant
 import CDN from '../../constants/cdn'
 //import styles
-// import '../../../node_modules/ekiio-video-react/lib/styles/ekiio-video-react.css'
-import './ekiio-video-react.css'
+import '../../../node_modules/ekiio-video-react/lib/styles/ekiio-video-react.css'
 import * as styles from './PlayBoard.less'
 import classNames from 'classnames'
 

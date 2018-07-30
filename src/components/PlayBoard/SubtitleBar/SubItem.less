@@ -42,11 +42,14 @@
 
   div {
     flex: 1;
-    font-size: 1.5em;
+    font-size: 1.6em;
     opacity: 0.6;
     padding: 0.5em 0;
     transform-origin: 0 50%;
     transition: all 0.3s;
+    @media(max-width: 568px) {
+      font-size: 1.2em;
+    }
 
   }
   &.active {
@@ -57,7 +60,8 @@
     div {
       transition: all 0.3s ease-in-out 0.2s;
       opacity: 1;
-      transform: scale(1.4);
+      transform: scale(1.2);
+      font-weight: bold;
     }
   }
   &:hover {

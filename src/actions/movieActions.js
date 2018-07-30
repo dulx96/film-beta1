@@ -6,7 +6,7 @@ const movieDataPlayMocks = {
   espSum: '21',
   OriVideoSrc: 'https://lh3.googleusercontent.com/tYNW7gMpV5V0W87iogLKDhJXySzUNanWaH8d_EZhRps3EuyLFdV9cQxaCeOOPnNjtvksbjyEnNEMvG-3mWHI_P3vfLqU5X5ysIlAuSOd7lEvZGKtkknsEGRYGJMF3OSjZF-cQfbW=w600-h315-k-no-m18',
   ViVideoSrc: 'https://lh3.googleusercontent.com/kMCqKzdGU_McxkYrkYuwJw3pa_Cz-kluTxtx4kqUQfj6V9klTjTXry70U3mPjjAG4KWWlz9SK1ACSOLcVA=m22',
-  JASubSrc: '/sub/text.txt',
+  JASubSrc: '/sub/text1.txt',
 }
 const movieDetailsMock = {
   id: '123456',
