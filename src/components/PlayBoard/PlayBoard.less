@@ -1,8 +1,36 @@
 @import "../Styles/Layout/layout";
 
-@subtitle-bar-min-width-wide: 400px;
-.player {
-  width: 100vw;
-  max-width: calc(@max-player-width - @col-secondary-width);
-  margin: 0 auto;
+.wrap {
+  &:extend(.play-page-container .play-page-row);
+  .col-primary {
+    &:extend(.play-page-container .play-page-row .play-page-col-primary);
+    .player {
+      width: 100vw;
+      max-width: var(--max-player-width);
+      min-width: var(--min-player-width);
+      margin: 0 auto;
+    }
+  }
+  .col-secondary {
+    &:extend(.play-page-container .play-page-row .play-page-col-secondary);
+
+    height: calc((100vw - var(--non-player-width)) * 9 / 16);
+    max-height: calc(var(--max-player-width) * 9 / 16);
+    //fit height equal to player when show 2 columns
+    min-height: var(--min-player-height);
+    // max height when screen > max play-page container
+    @media (min-width: 1754px) and (min-height: 950px) {
+      max-height: calc((1754px - var(--col-padding) * 3 - var(--col-secondary-width)) * 9 / 16);
+    }
+    //fit for small phone device
+    @media (max-width: @max-width-1-col) {
+      max-height: 230px;
+    }
+    //fit 1 col for tablet vertical  < ipad
+    @media (max-width: 768px) and (min-width: @max-width-1-col + 1px) and (min-height: 415px) {
+      max-height: 350px;
+    }
+
+  }
 }
+

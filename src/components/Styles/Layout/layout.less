@@ -8,35 +8,118 @@
 @movie-card-marginTB: 10px;
 
 //movie play page layout
-@player-ratio: 16/9;
-@col-secondary-extra-padding: 0px;
-@space-below-player: 136px;
-@non-player-height: calc(@top-bar-height + 24px + @space-below-player);
-@non-player-width: 3 * 24px + @col-secondary-extra-padding;
-@min-player-height: 240px;
-@min-player-width: @min-player-height * @player-ratio;
-@max-player-width: calc((100vh - @non-player-height) * @player-ratio);
-@col-secondary-width: 402px;
-@min-col-secondary-width: 300px;
+//responsive point var less
+@max-width-1-col: 568px; //any screen what width smaller than that will display 1 column
+@max-height-full-player: 244px; //any screen what height smaller than that will display  full player
+.play-page-container {
+  //hard variables
+  @player-ratio: 16/9;
+  --col-secondary-extra-padding: 0px;
+  --play-page-container-max-width: calc(1280px + var(--col-secondary-width) + var(--col-secondary-extra-padding) + 3 * var(--col-padding)); //1754px
+  --non-player-height: calc(@top-bar-height + var(--col-padding) + var(--space-below-player));
+  --non-player-width: calc(3 * var(--col-padding) + var(--col-secondary-extra-padding) + var(--col-secondary-width));
+  --max-player-width: calc((100vh - var(--non-player-height)) * @player-ratio);
+  --min-player-width: calc(var(--min-player-height) * @player-ratio);
+  --col-secondary-width: 402px;
+  --min-col-secondary-width: 300px;
 
-@player-width-lv1: 320px;
-@player-width-lv2: 375px;
-@player-width-lv3: 480px;
-@player-width-lv4: 640px;
-@player-width-lv4: 768px;
+  //variables need to be changed when screen size change
+  --min-player-height: 180px;
+  --space-below-player: 136px;
+  --col-padding: 24px;
 
-.play-page-col-primary {
-  min-width: calc(@min-player-height * @player-ratio);
-  padding-top: 24px;
-  margin-left: 24px;
-  padding-right: 24px;
-  float: left;
+  //responsive
+  //change width of secondary break point
+  @media (max-width: 1112px) {
+    --col-secondary-width: 300px;
+  }
+  //fit for small phone size
+  @media (max-width: @max-width-1-col) {
+    --col-padding: 10px;
+    .play-page-row {
+      .play-page-col-primary {
+        padding: 0 !important;
+      }
+      .play-page-col-secondary {
+        padding: var(--col-padding) !important;
+        flex: 1;
+      }
+    }
+  }
+
+  //fit for old android device (640 px) landscape
+  @media (max-height: 414px) and (min-height: @max-height-full-player + 1px) and (max-width: 666px) and (min-width: @max-width-1-col + 1px) {
+    --col-padding: 5px;
+    .play-page-row {
+      .play-page-col-primary {
+        padding-top: var(--col-padding) !important;
+        padding-left: var(--col-padding) !important;
+        padding-right: var(--col-padding) !important;
+
+      }
+      .play-page-col-secondary {
+        padding-top: var(--col-padding) !important;
+        padding-right: var(--col-padding) !important;
+      }
+    }
+  }
+  //fit for apple iphone landscape
+  @media (max-height: 414px) and (min-height: @max-height-full-player + 1px) and (max-width: 812px) and (min-width: 667px) {
+    --col-padding: 5px;
+    .play-page-row {
+      .play-page-col-primary {
+        padding-top: var(--col-padding) !important;
+        padding-left: var(--col-padding) !important;
+        padding-right: var(--col-padding) !important;
+
+      }
+      .play-page-col-secondary {
+        padding-top: var(--col-padding) !important;
+        padding-right: var(--col-padding) !important;
+      }
+    }
+  }
+  //fit 1 col for tablet  <= ipad original
+  @media (max-width: 768px) and (min-width: @max-width-1-col + 1px) and (min-height: 415px) {
+    --min-player-height: 240px;
+    .play-page-row {
+      .play-page-col-secondary {
+        padding-left: var(--col-padding);
+        flex: 1;
+      }
+    }
+  }
+  @media (max-height: @max-height-full-player) {
+    --min-player-height: 200px;
+  }
+
+  max-width: var(--play-page-container-max-width);
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  .play-page-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .play-page-col-primary {
+      min-width: calc(var(--min-player-height) * @player-ratio);
+      max-width: calc((100vh - var(--non-player-height)) * @player-ratio);
+      padding-top: var(--col-padding);
+      padding-left: var(--col-padding);
+      padding-right: var(--col-padding);
+      flex: 1;
+      flex-basis: 0.000000001px;
+      display: flex;
+      justify-content: center;
+
+    }
+    .play-page-col-secondary {
+      width: var(--col-secondary-width);
+      min-width: var(--min-col-secondary-width);
+      padding-top: var(--col-padding);
+      padding-right: var(--col-padding);
+    }
+  }
 }
 
-.play-page-col-secondary {
-  width: @col-secondary-width;
-  min-width: @min-col-secondary-width;
-  padding-top: 24px;
-  float: left;
-}
 

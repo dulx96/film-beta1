@@ -71,7 +71,7 @@ export default class subtitleBar extends React.PureComponent {
       </Element>,
     )
     return (
-      <div className={styles.wrap}>
+      <div className={styles.wrap} >
         {this.state.isLoading ? <div> loading sub </div> :
           <div id='subtitleBar' className={styles['sub-container']}
                onScroll={this.handleScroll}>

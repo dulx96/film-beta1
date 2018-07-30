@@ -29,6 +29,7 @@ export default class PlayBoard extends React.PureComponent {
       enableJaSub: true,
       settingActive: false,
     }
+    this.wrapPlayer = React.createRef()
     this.player = React.createRef()
     this.seek = this.seek.bind(this)
     this.toggleSetting = this.toggleSetting.bind(this)
@@ -125,7 +126,6 @@ export default class PlayBoard extends React.PureComponent {
 
   toggleSetting () {
     this.setState(prevState => ({settingActive: !prevState.settingActive}))
-
   }
 
   render () {
@@ -138,9 +138,10 @@ export default class PlayBoard extends React.PureComponent {
     return (
       !fetchedData ? <div>loading</div> :
 
-        <div className={styles.wrap}>
-          <div className={classNames(styles['play-page-col-primary'])}>
+        <div className={styles['wrap']}>
+          <div className={styles['col-primary']}>
             <div
+              ref={this.wrapPlayer}
               className={classNames({
                 [styles.player]: true,
               })}>
@@ -168,7 +169,7 @@ export default class PlayBoard extends React.PureComponent {
             </div>
           </div>
 
-          <div className={styles['play-page-col-secondary']}>
+          <div className={styles['col-secondary']}>
             <SubtitleBar
               subs={this.state.subJALoading ? [] : this.state.subs.JA}
               isLoading={this.state.subJALoading}
