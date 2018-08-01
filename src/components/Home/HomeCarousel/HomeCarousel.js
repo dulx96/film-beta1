@@ -45,7 +45,6 @@ class HomeCarousel extends Component {
       slidesToScroll: 1,
       autoplay: false,
       autoplaySpeed: 6000,
-
       speed: 500,
     }
 

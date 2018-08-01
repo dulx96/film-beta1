@@ -131,7 +131,7 @@ export default class PlayBoard extends React.PureComponent {
     const fetchedData = this.props.getMoviePlayDataSuccess
     const data = this.props.moviePlayData
     const src = {
-      en: 'https://video.fsgn2-1.fna.fbcdn.net/v/t42.9040-2/10000000_640991629590017_8459784335468265472_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=636&oh=0571fa0716ddd3abf6a434d4ae87f988&oe=5B60A9F7',
+      en: 'https://video.fhan3-3.fna.fbcdn.net/v/t42.9040-2/10000000_606013996447071_3089801160664547328_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=832&oh=2beefc506754c974a509a563734b7a1e&oe=5B6332F2',
       vi: 'https://video.fsgn2-1.fna.fbcdn.net/v/t42.9040-2/10000000_640991629590017_8459784335468265472_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=636&oh=0571fa0716ddd3abf6a434d4ae87f988&oe=5B60A9F7',
     }
     return (
