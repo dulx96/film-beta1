@@ -2,9 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 //import component
 import { IconSearch } from '../Styles/Icons'
-
 //import plugins
-import windowSize from 'react-window-size'
 //import constant
 import CDN from '../../constants/cdn'
 //import style
@@ -13,12 +11,10 @@ import * as styles from './TopBar.less'
 class TopBar extends React.PureComponent {
   render () {
     const {
-      userReducer: {user, fetchUserSuccess}, homeBoardIsActive, toggleSideBar, windowWidth} = this.props
+      userReducer: {user, fetchUserSuccess}, toggleSideBar} = this.props
     return (
       <div className={styles.wrap}>
         <div className={styles.content}>
-          {homeBoardIsActive &&
-          <div onClick={() => toggleSideBar(windowWidth)}>toggle</div>}
           <div style={{flex: 0.5}}>
           </div>
           <div className={styles['search-bar']}>
@@ -49,8 +45,6 @@ class TopBar extends React.PureComponent {
 
 TopBar.propTypes = {
   userReducer: PropTypes.object,
-  homeBoardIsActive: PropTypes.bool,
   toggleSideBar: PropTypes.func,
-  windowWidth: PropTypes.number,
 }
-export default windowSize(TopBar)
+export default TopBar
