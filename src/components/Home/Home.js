@@ -12,7 +12,7 @@ class Home extends React.Component {
     return (
       <div className={styles.wrap}>
         <HomeCarousel />
-        {/*<HomeBoard />*/}
+        <HomeBoard />
       </div>
     )
   }

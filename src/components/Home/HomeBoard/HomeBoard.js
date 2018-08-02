@@ -16,49 +16,18 @@ import * as styles from './HomeBoard.less'
 class HomeBoard extends React.Component {
   constructor (props) {
     super(props)
-
-    WheelReact.config({
-      left: () => {
-      },
-      right: () => {
-      },
-      up: () => {
-
-      },
-      down: () => {
-        this.state.scrollTop === 0 && this.props.toggleHomeBoard()
-      },
-    })
-  }
-
-  state = {
-    scrollTop: 0,
-  }
-
-  componentDidMount () {
-    this.container.addEventListener('scroll', this.handleContainerScroll)
-  }
-
-  handleContainerScroll = () => {
-    this.setState({scrollTop: this.container.scrollTop})
   }
 
   render () {
     return (
       <div className={classNames({
         [styles.wrap]: true,
-        [styles.active]: this.props.homeBoardIsActive,
       })}>
-        <SideBar windowWidth={this.props.windowWidth} />
+        {/*<SideBar windowWidth={this.props.windowWidth} />*/}
         <div className={classNames({
           [styles.container]: true,
-          [styles['sb-wd-active']]: this.props.sb_wd_scrIsActive &&
-          this.props.windowWidth > responsive.sideBarSwitchPoint,
-        })}
-             ref={el => this.container = el}
-             {...WheelReact.events}>
-          <HomeCategory sb_wd_scrIsActive={this.props.sb_wd_scrIsActive &&
-          this.props.windowWidth > responsive.sideBarSwitchPoint} />
+        })}>
+          <HomeCategory sb_wd_scrIsActive={false} />
 
         </div>
       </div>
