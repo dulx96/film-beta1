@@ -15,22 +15,21 @@ class HomeCarousel extends Component {
   componentDidMount () {
     this.props.getHomeCarousel()
   }
-
   render () {
     const screenWidth = this.props.windowWidth
     let centerPadding = 0
-    let scollbarWidth = 10
+    let scollbarWidth = 17
     if (screenWidth + scollbarWidth >= 1366) {
-      centerPadding = `${(screenWidth - 1344 - scollbarWidth ) / 2}px`
+      centerPadding = `${(screenWidth - 1344 - scollbarWidth) / 2}px`
     }
     else if (screenWidth + scollbarWidth >= 1280) {
       centerPadding = `${(screenWidth - 1120 - scollbarWidth) / 2}px`
     }
     else if (screenWidth + scollbarWidth >= 1024) {
-      centerPadding = `${(screenWidth - 896 - scollbarWidth ) / 2}px`
+      centerPadding = `${(screenWidth - 896 - scollbarWidth) / 2}px`
     }
     else if (screenWidth + scollbarWidth >= 768) {
-      centerPadding = `${(screenWidth - 732 + scollbarWidth ) / 2}px`
+      centerPadding = `${(screenWidth - 732 - scollbarWidth) / 2}px`
     }
 
     const settings = {

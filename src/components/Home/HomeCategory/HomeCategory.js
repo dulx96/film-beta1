@@ -24,7 +24,6 @@ class HomeCategory extends React.PureComponent {
 }
 
 HomeCategory.propTypes = {
-  sb_wd_scrIsActive: PropTypes.bool,
 }
 
 export default HomeCategory
