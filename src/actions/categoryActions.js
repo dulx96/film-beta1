@@ -55,7 +55,7 @@ const cat1DataMock = [
 
 ]
 const query = `{
- moviespaginated(count: 5, page: 2){
+ moviespaginated(count: 6, page: 2){
    movies{
      titles{
        romaji

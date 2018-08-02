@@ -8,11 +8,10 @@ import * as styles from './Slide.less'
 
 class Slide extends React.PureComponent {
   render () {
+    const bgImg = {backgroundImage: `url(${CDN + this.props.imageId})`}
     return (
       <div className={styles.wrap}>
-        <div className={styles.container}>
-          <img src={`${CDN + this.props.imageId}`}
-               alt={this.props.title} />
+        <div className={styles.container} style={bgImg}>
         </div>
       </div>
     )

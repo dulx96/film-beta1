@@ -19,22 +19,20 @@ class HomeCarousel extends Component {
   render () {
     const screenWidth = this.props.windowWidth
     let centerPadding = 0
-    if (screenWidth > 1600) {
-      centerPadding = '10%'
+    let scollbarWidth = 10
+    if (screenWidth + scollbarWidth >= 1366) {
+      centerPadding = `${(screenWidth - 1344 - scollbarWidth ) / 2}px`
     }
-    else if (screenWidth > 1440) {
-      centerPadding = '280px'
+    else if (screenWidth + scollbarWidth >= 1280) {
+      centerPadding = `${(screenWidth - 1120 - scollbarWidth) / 2}px`
     }
-    else if (screenWidth > 1276) {
-      centerPadding = '200px'
+    else if (screenWidth + scollbarWidth >= 1024) {
+      centerPadding = `${(screenWidth - 896 - scollbarWidth ) / 2}px`
     }
-    else if (screenWidth > 1024) {
-      centerPadding = '140px'
+    else if (screenWidth + scollbarWidth >= 768) {
+      centerPadding = `${(screenWidth - 732 + scollbarWidth ) / 2}px`
     }
 
-    else if (screenWidth > 960) {
-      centerPadding = '100px'
-    }
     const settings = {
       className: 'center',
       centerMode: true,
@@ -51,7 +49,7 @@ class HomeCarousel extends Component {
     const data = this.props.data
     return (
       <div className={styles.wrap}
-           // style={{backgroundImage: `url(${CDN + '/images/background.jpg'})`}}
+        // style={{backgroundImage: `url(${CDN + '/images/background.jpg'})`}}
       >
         <div className={styles.content}>
           <Slider {...settings}>
