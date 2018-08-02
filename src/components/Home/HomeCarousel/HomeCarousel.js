@@ -34,6 +34,7 @@ class HomeCarousel extends Component {
 
     const settings = {
       className: 'center',
+      dots: true,
       centerMode: true,
       infinite: true,
       centerPadding: centerPadding,
