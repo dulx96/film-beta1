@@ -24,19 +24,13 @@
 
     display: block;
     /*overflow: hidden;*/
-
     margin: 0;
-
 }
-@media only screen and (min-width: 1550px) {
-    .slick-list {
-        padding-left: 350px !important;
-    }
 
-}
 .slick-list:focus
 {
-    outline: red;
+    outline: none;
+
 }
 .slick-list.dragging
 {
@@ -120,4 +114,12 @@
 }
 .slick-arrow.slick-hidden {
     display: none;
+}
+.slick-slide {
+    transition: all 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+.slick-slide.slick-center {
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
 }

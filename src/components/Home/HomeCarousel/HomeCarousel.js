@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 //import components
-import { HomeSlide } from '../../CardItem/index'
+import { Slide } from '../../CardItem/index'
 //import plugins
 import Slider from 'react-slick'
 import windowSize from 'react-window-size'
@@ -20,7 +20,7 @@ class HomeCarousel extends Component {
     const screenWidth = this.props.windowWidth
     let centerPadding = 0
     if (screenWidth > 1600) {
-      centerPadding = '350px'
+      centerPadding = '10%'
     }
     else if (screenWidth > 1440) {
       centerPadding = '280px'
@@ -51,11 +51,11 @@ class HomeCarousel extends Component {
     const data = this.props.data
     return (
       <div className={styles.wrap}
-           style={{backgroundImage: `url(${CDN + '/images/background.jpg'})`}}
+           // style={{backgroundImage: `url(${CDN + '/images/background.jpg'})`}}
       >
         <div className={styles.content}>
           <Slider {...settings}>
-            {data.map((d, index) => <HomeSlide key={index} {...d} />)}
+            {data.map((d, index) => <Slide key={index} {...d} />)}
           </Slider>
         </div>
       </div>

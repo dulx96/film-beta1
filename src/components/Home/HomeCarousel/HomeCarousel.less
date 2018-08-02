@@ -1,15 +1,17 @@
+@import "../../Styles/Layout/layout";
 .wrap {
   position: relative;
-  height: 1000px;
+  z-index: @z-index-lv1;
   width: 100%;
   background-size: cover;
   background: no-repeat 50% 50%;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .content {
   width: 100%;
-  position: absolute;
-  bottom: 70px;
   z-index: 2;
 }
 
