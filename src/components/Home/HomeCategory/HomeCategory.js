@@ -12,7 +12,8 @@ import * as styles from './HomeCategory.less'
 class HomeCategory extends React.PureComponent {
 
   render () {
-    let CategoryComponentArray = CAT_LIST.map((cat, index) => <Category key={index} catName={cat} />)
+    let CategoryComponentArray = CAT_LIST.map(
+      (cat, index) => <Category key={index} catName={cat} />)
     return (
       <div className={classNames({
         [styles.wrap]: true,
@@ -23,7 +24,6 @@ class HomeCategory extends React.PureComponent {
   }
 }
 
-HomeCategory.propTypes = {
-}
+HomeCategory.propTypes = {}
 
 export default HomeCategory

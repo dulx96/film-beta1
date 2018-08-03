@@ -9,6 +9,7 @@ import Home from './components/Home'
 import MoviePlayPage from './components/MoviePlayPage'
 //import style
 import './App.css'
+import { WindowSize } from './components/WindowSize'
 
 class App extends Component {
   componentWillMount () {
@@ -18,11 +19,11 @@ class App extends Component {
   render () {
     return (
       <Router>
-        <div>
+        <WindowSize>
           <TopBar />
           <Route exact path="/" component={Home} />
           <Route path="/movie/play" component={MoviePlayPage} />
-        </div>
+        </WindowSize>
       </Router>
     )
   }

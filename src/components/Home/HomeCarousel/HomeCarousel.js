@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import { Slide } from '../../CardItem/index'
 //import plugins
 import Slider from 'react-slick'
-import windowSize from 'react-window-size'
+import {WithWindowSize} from '../../WindowSize'
+
 //import constant
 import CDN from '../../../constants/cdn'
 // import styles
@@ -61,4 +62,4 @@ class HomeCarousel extends Component {
   }
 }
 
-export default windowSize(HomeCarousel)
+export default WithWindowSize(HomeCarousel)
