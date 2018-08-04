@@ -24,6 +24,8 @@ class HomeCategory extends React.PureComponent {
   }
 }
 
-HomeCategory.propTypes = {}
+HomeCategory.propTypes = {
+
+}
 
 export default HomeCategory

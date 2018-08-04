@@ -1,58 +1,21 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 //import component
-import { IconPlay } from '../Styles/Icons'
+import MovieCardNonMobile from './MovieCardNonMobile'
+import MovieCardMobile from './MovieCardMobile'
 //import plugins
-import classNames from 'classnames'
+import { WithWindowSize } from '../WindowSize'
+
 //import style
-import * as styles from './MovieCard.less'
 
 class MovieCard extends React.PureComponent {
   render () {
-    return (
-      <div className={styles.wrap}>
-        <img src='http://cdn.ekiio.com/images/slide14.jpg'
-             alt={this.props.titles.romaji} />
-        <Link to='/movie/play'>
-          <IconPlay className={styles['play-icon']}
-                    size={80} />
-        </Link>
-        <div className={styles.info}>
-          <h3>{this.props.titles.romaji}</h3>
-          <p>{['Actions', 'Adventure'].join(', ')}</p>
-          <section>
-            <p className={styles['imdb-score']}>
-              9.1
-            </p>
-            <span>121.444 views</span>
-          </section>
-
-        </div>
-        <div className={styles.sub}>
-          {['V', 'J', 'E'].map(
-            (e, index) => <div><i key={index}> {e} </i></div>)}
-        </div>
-        <div className={classNames({
-          [styles.details]: true,
-          [styles['impress-div']]: true,
-        })}>
-          <span>
-            Chi tiết
-          </span>
-        </div>
-        <div className={classNames({
-          [styles.level]: true,
-          [styles['impress-div']]: true,
-        })}>
-          <span>JLPT N3</span>
-        </div>
-      </div>
-    )
+    return this.props.windowWidth >= 768 ?  <MovieCardNonMobile {...this.props}/>
+      : <MovieCardMobile {...this.props} />
   }
 }
 
-export default MovieCard
+export default WithWindowSize(MovieCard)
 MovieCard.propTypes = {
   title_en: PropTypes.string,
   title_jp: PropTypes.string,

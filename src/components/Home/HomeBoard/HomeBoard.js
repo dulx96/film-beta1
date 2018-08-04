@@ -16,12 +16,7 @@ class HomeBoard extends React.Component {
       <div className={classNames({
         [styles.wrap]: true,
       })}>
-        <div className={classNames({
-          [styles.container]: true,
-        })}>
-          <HomeCategory sb_wd_scrIsActive={false} />
-
-        </div>
+          <HomeCategory />
       </div>
     )
   }
