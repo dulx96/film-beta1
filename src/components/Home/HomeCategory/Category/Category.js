@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 //import components
 import { MovieCard } from '../../../CardItem/index'
-
+//import plugin
 //import constant
 import { CAT_LIST } from '../../../../constants/categoryName'
 //import styles
@@ -40,7 +40,13 @@ class Category extends React.PureComponent {
       (data, index) => <MovieCard key={index} {...data} />)
     return (
       <div className={styles.wrap}>
-        {this.state.getCategoryDataSuccess || <div>loading</div>}
+        <div className={styles.title}>
+          <div className={styles.circle} />
+          <div className={styles.text}>
+            <p>Xem Nhiều Nhất</p>
+            <span>Toàn bộ</span>
+          </div>
+        </div>
         {MovieCardComponentArray}
       </div>
     )
@@ -52,5 +58,4 @@ Category.propTypes = {
   getCategoryData: PropTypes.func,
   CAT: PropTypes.array,
 }
-
 export default Category

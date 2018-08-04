@@ -2,6 +2,7 @@ import React from 'react'
 
 const WindowSizeContext = React.createContext()
 
+//provider
 class WindowSize extends React.Component {
   constructor (props) {
     super(props)
@@ -38,6 +39,7 @@ class WindowSize extends React.Component {
   }
 }
 
+//consumer wrap
 const WithWindowSize = (Component) => props => (
   <WindowSizeContext.Consumer>
     {({width}) => (<Component {...props} windowWidth={width} />)}
