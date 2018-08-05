@@ -2,7 +2,7 @@ import * as actions from '../constants/actionTypes'
 
 const homeCarouselDataMock = [
   {
-    imageId: '/images/poster4.jpg',
+    imageId: '/images/poster1.jpg',
     title: 'The Return Of Night Fury',
     views: 1000,
     details: 'It was along time from he left, and now he came back with black eyes and super fast wings, no one know how much he is strong',
@@ -16,14 +16,14 @@ const homeCarouselDataMock = [
     sub: ['VI', 'EN', 'JA'],
   },
   {
-    imageId: '/images/poster3.jpg',
+    imageId: '/images/poster4.jpg',
     title: 'Conan the Pigs',
     views: 3000,
     details: 'It was along time from he left, and now he came back with black eyes and super fast wings, no one know how much he is strong',
     sub: ['VI', 'EN'],
   },
   {
-    imageId: '/images/poster1.jpg',
+    imageId: '/images/poster3.jpg',
     title: 'The Return Of Night Fury',
     views: 1000,
     details: 'It was along time from he left, and now he came back with black eyes and super fast wings, no one know how much he is strong',

@@ -9,7 +9,10 @@ import { CAT_LIST } from '../../../constants/categoryName'
 //import styles
 import * as styles from './HomeCategory.less'
 
-class HomeCategory extends React.PureComponent {
+class HomeCategory extends React.Component {
+  shouldComponentUpdate () {
+    return false
+  }
 
   render () {
     let CategoryComponentArray = CAT_LIST.map(
@@ -24,8 +27,6 @@ class HomeCategory extends React.PureComponent {
   }
 }
 
-HomeCategory.propTypes = {
-
-}
+HomeCategory.propTypes = {}
 
 export default HomeCategory

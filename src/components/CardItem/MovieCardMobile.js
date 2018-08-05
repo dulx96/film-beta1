@@ -23,7 +23,7 @@ export default class MovieCardMobile extends React.Component {
             </div>
           </div>
           <div className={classNames({
-            [styles.details]: true,
+            [styles.rate]: true,
             [styles['impress-div']]: true,
           })}>
           <span>

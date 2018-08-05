@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 //import actions
 import { fetchUser } from './actions/userActions'
@@ -21,7 +21,10 @@ class App extends Component {
       <Router>
         <WindowSize>
           <TopBar />
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={() => (
+            <Redirect to="/home" />
+          )} />
+          <Route path="/home" component={Home} />
           <Route path="/movie/play" component={MoviePlayPage} />
         </WindowSize>
       </Router>

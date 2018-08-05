@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 //import components
 import { Slide } from '../../CardItem/index'
@@ -12,7 +12,7 @@ import CDN from '../../../constants/cdn'
 import * as styles from './HomeCarousel.less'
 import './Carousel.css'
 
-class HomeCarousel extends Component {
+class HomeCarousel extends React.PureComponent {
   componentDidMount () {
     this.props.getHomeCarousel()
   }
@@ -36,6 +36,7 @@ class HomeCarousel extends Component {
     const settings = {
       className: 'center',
       dots: true,
+      initialSlide: 2,
       centerMode: true,
       infinite: true,
       centerPadding: centerPadding,

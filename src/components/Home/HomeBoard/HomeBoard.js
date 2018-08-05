@@ -11,12 +11,16 @@ import classNames from 'classnames'
 import * as styles from './HomeBoard.less'
 
 class HomeBoard extends React.Component {
+  shouldComponentUpdate () {
+    return false
+  }
+
   render () {
     return (
       <div className={classNames({
         [styles.wrap]: true,
       })}>
-          <HomeCategory />
+        <HomeCategory />
       </div>
     )
   }
