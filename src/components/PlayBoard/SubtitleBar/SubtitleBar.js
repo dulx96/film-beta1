@@ -11,10 +11,11 @@ export default class subtitleBar extends React.PureComponent {
     super()
     this.state = {
       isLoading: true,
-      isScrolling: false,
+      isUserActive: false,
       subs: [],
     }
-    this.handleScroll = this.handleScroll.bind(this)
+    this.handleWheel = this.handleWheel.bind(this)
+    this.handleMouseMove = this.handleMouseMove.bind(this)
   }
 
   static getDerivedStateFromProps (nextProps, prevState) {
@@ -35,19 +36,27 @@ export default class subtitleBar extends React.PureComponent {
 
   // stop auto scroll to current sub when user scroll in 1.5s
   //TODO bug auto scroll and user scroll is same behavior, so system cant detect what performed by user, now solution is reduce the idle times or add mouse move event
-  handleScroll () {
-    this.setState({isScrolling: true})
+  handleWheel () {
+    this.setState({isUserActive: true})
     clearTimeout(this.controlScrollTimer)
     this.controlScrollTimer = setTimeout(() => {
-      this.setState({isScrolling: false})
-    }, 1200)
+      this.setState({isUserActive: false})
+    }, 800)
+  }
+
+  handleMouseMove () {
+    this.setState({isUserActive: true})
+    clearTimeout(this.controlScrollTimer)
+    this.controlScrollTimer = setTimeout(() => {
+      this.setState({isUserActive: false})
+    }, 800)
   }
 
   componentDidUpdate (prevProps) {
     //auto scroll to current subitems
     if (this.props.currentSubIndex >= 0 &&
       this.props.currentSubIndex !== prevProps.currentSubIndex) {
-      this.state.isScrolling ||
+      this.state.isUserActive ||
       scroller.scrollTo(`subItem${this.props.currentSubIndex }`, {
         duration: 800,
         delay: 200,
@@ -75,7 +84,8 @@ export default class subtitleBar extends React.PureComponent {
           <Element id='subtitleBar'
                    style={scrollContainerMustHaveStyle}
                    className={styles['sub-container']}
-                   onScroll={this.handleScroll}>
+                   onWheel={this.handleWheel}
+                   onMouseMove={this.handleMouseMove}>
             {subItem}
           </Element>
         }
