@@ -1,0 +1,185 @@
+@import '../../Styles/Icons/index';
+
+//@button-background-color: rgba(44, 62, 80, 0.82);
+@button-root-background-color: linear-gradient(60deg, rgba(29, 196, 233, 0.76), rgba(29, 233, 182, 0.7));
+@button-active-background-color: linear-gradient(60deg, rgba(29, 196, 233, 0.76), rgba(29, 233, 182, 0.7));
+@subitem-lv1-backround-color: rgba(44, 62, 80, 0.56);
+.popup-setting-btn {
+  cursor: pointer;
+  outline: none;
+  background: @button-root-background-color;
+  border-radius: 50%;
+  transition: all 0.1s;
+  &:hover {
+    text-shadow: 0 0 1em white;
+
+  }
+}
+
+.popup-setting-root-btn:extend(.popup-setting-btn all) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  @media (max-width: 700px) {
+    width: 35px;
+    height: 35px;
+    font-size: 15px;
+  }
+  box-sizing: content-box;
+  opacity: 0;
+}
+
+.sub-items-lv1 {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  &.up {
+    bottom: 100%;
+    width: 100%;
+    flex-direction: column;
+  }
+  &.down {
+    top: 100%;
+    width: 100%;
+    flex-direction: column;
+  }
+  &.left {
+    height: 100%;
+    right: 90%;
+  }
+  &.right {
+    height: 100%;
+    left: 90%
+  }
+  //button lv2
+  div {
+    &:extend(.popup-setting-btn);
+    width: 60%;
+    padding-top: 60%;
+    margin: 5px 0;
+    position: relative;
+    font-size: 0.6em;
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.wrap {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 46px); //minus player-control bar height
+  top: 0;
+  left: 0;
+  z-index: 3; //depend on ekiio video player
+
+  .container {
+    position: absolute;
+    top: calc(50% + 23px); // half of player-control bar height
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    .big-setting-popup-icon {
+      &:extend(.popup-setting-root-btn);
+      .big-setting-icon();
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      font-size: 55px;
+      padding: 15px;
+      @media (max-width: 700px) {
+        font-size: 40px;
+        padding: 10px;
+      }
+      animation: big-setting-icon-animation 0.3s ease-in forwards;
+      @keyframes big-setting-icon-animation {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 0.9;
+          transform: translate(-50%, -50%) rotate(120deg);
+        }
+      }
+
+    }
+    .left-setting {
+      @left-child-num: 1;
+      @animation-name: 'root-btn-left-appear';
+      .mixin-loop (@i) when (@i > 0) {
+        &:nth-child(@{i}) {
+          .left-setting-animation-gen(@animation-name, @i);
+        }
+        .root-btn-left-animation-mixin(@animation-name, @i);
+        .mixin-loop(@i - 1)
+      }
+      .left-setting-animation-gen(@name,@n) {
+        @animation-name: ~"@{name}@{n}";
+        animation: @animation-name 0.3s linear forwards;
+        animation-delay: @n*0.25s;
+      }
+      .root-btn-left-animation-mixin(@name,@n) {
+        @keyframe-name: ~"@{name}@{n}";
+        @keyframes @keyframe-name {
+          from {
+          }
+          to {
+            opacity: 1;
+            transform: translate(-@n*250%, -50%);
+          }
+        }
+      }
+      .mixin-loop(@left-child-num);
+    }
+    .right-setting {
+      @left-child-num: 1;
+      @right-child-num: 1;
+      @index: @left-child-num + 1;
+      @animation-name: 'root-btn-right-appear';
+      .mixin-loop (@i) when (@i > @index) {
+        &:nth-child(@{i}) {
+          .right-setting-animation-gen(@animation-name, @i - @index);
+        }
+        .root-btn-right-animation-mixin(@animation-name, @i - @index);
+        .mixin-loop(@i - 1)
+      }
+      .right-setting-animation-gen(@name,@n) {
+        @animation-name: ~"@{name}@{n}";
+        animation: @animation-name 0.3s linear forwards;
+        animation-delay: @n*0.25s;
+      }
+      .root-btn-right-animation-mixin(@name,@n) {
+        @keyframe-name: ~"@{name}@{n}";
+        @keyframes @keyframe-name {
+          from {
+          }
+          to {
+            opacity: 1;
+            transform: translate(@n*150%, -50%);
+          }
+        }
+      }
+      .mixin-loop(@right-child-num+@index);
+    }
+
+  }
+}
+
+
+
+
+
+
+

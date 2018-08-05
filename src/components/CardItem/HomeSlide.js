@@ -10,7 +10,6 @@ import { IconPlay } from '../Styles/Icons'
 
 class HomeSlide extends React.PureComponent {
   render () {
-
     return (
       <div className={styles.wrap}>
         <div className={styles.content}>

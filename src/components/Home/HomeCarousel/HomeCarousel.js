@@ -1,42 +1,42 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 //import components
-import { HomeSlide } from '../../CardItem/index'
+import { Slide } from '../../CardItem/index'
 //import plugins
 import Slider from 'react-slick'
-import windowSize from 'react-window-size'
+import {WithWindowSize} from '../../WindowSize'
+
 //import constant
 import CDN from '../../../constants/cdn'
 // import styles
 import * as styles from './HomeCarousel.less'
 import './Carousel.css'
 
-class HomeCarousel extends Component {
+class HomeCarousel extends React.PureComponent {
   componentDidMount () {
     this.props.getHomeCarousel()
   }
-
   render () {
     const screenWidth = this.props.windowWidth
     let centerPadding = 0
-    if (screenWidth > 1600) {
-      centerPadding = '350px'
+    let scollbarWidth = 17
+    if (screenWidth + scollbarWidth >= 1366) {
+      centerPadding = `${(screenWidth - 1344 - scollbarWidth) / 2}px`
     }
-    else if (screenWidth > 1440) {
-      centerPadding = '280px'
+    else if (screenWidth + scollbarWidth >= 1280) {
+      centerPadding = `${(screenWidth - 1120 - scollbarWidth) / 2}px`
     }
-    else if (screenWidth > 1276) {
-      centerPadding = '200px'
+    else if (screenWidth + scollbarWidth >= 1024) {
+      centerPadding = `${(screenWidth - 896 - scollbarWidth) / 2}px`
     }
-    else if (screenWidth > 1024) {
-      centerPadding = '140px'
+    else if (screenWidth + scollbarWidth >= 768) {
+      centerPadding = `${(screenWidth - 732 - scollbarWidth) / 2}px`
     }
 
-    else if (screenWidth > 960) {
-      centerPadding = '100px'
-    }
     const settings = {
       className: 'center',
+      dots: true,
+      initialSlide: 2,
       centerMode: true,
       infinite: true,
       centerPadding: centerPadding,
@@ -45,27 +45,22 @@ class HomeCarousel extends Component {
       slidesToScroll: 1,
       autoplay: false,
       autoplaySpeed: 6000,
-
       speed: 500,
     }
 
     const data = this.props.data
     return (
       <div className={styles.wrap}
-           style={{backgroundImage: `url(${CDN + '/images/background.jpg'})`}}
-           onWheel={() => !this.props.homeBoardIsActive &&
-             this.props.toggleHomeBoard()}
+        // style={{backgroundImage: `url(${CDN + '/images/background.jpg'})`}}
       >
         <div className={styles.content}>
           <Slider {...settings}>
-            {data.map((d, index) => <HomeSlide key={index} {...d} />)}
+            {data.map((d, index) => <Slide key={index} {...d} />)}
           </Slider>
         </div>
-        <span className={styles.scroll}
-              onClick={() => this.props.toggleHomeBoard()} />
       </div>
     )
   }
 }
 
-export default windowSize(HomeCarousel)
+export default WithWindowSize(HomeCarousel)

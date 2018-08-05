@@ -7,8 +7,10 @@ h5,
 p {
     margin: 0;
 }
+html {
+    font-size: 10px;
+}
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 62.5%;
-
+    background-color: #fafafa;
 }

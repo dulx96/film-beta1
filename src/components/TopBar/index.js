@@ -3,10 +3,9 @@ import { bindActionCreators } from 'redux'
 import { toggleSideBar } from '../../actions/siderBarActions'
 import TopBar from './TopBar'
 
-const mapStateToProps = ({userReducer, homeBoardReducer: {homeBoardIsActive}}) => (
+const mapStateToProps = ({userReducer}) => (
   {
     userReducer,
-    homeBoardIsActive,
   }
 )
 

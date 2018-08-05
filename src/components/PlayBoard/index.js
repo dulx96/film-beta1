@@ -1,6 +1,9 @@
 import { connect } from 'react-redux'
-import PlayPage from './PlayPage'
-import { getMoviePlayData } from '../../actions/movieActions'
+import PlayBoard from './PlayBoard'
+import {
+  getMoviePlayData,
+  getMoviePlayDataFailed,
+} from '../../actions/movieActions'
 import { bindActionCreators } from 'redux'
 
 const mapStateToProps = ({movieReducer}) => (
@@ -10,6 +13,6 @@ const mapStateToProps = ({movieReducer}) => (
   }
 )
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getMoviePlayData,
+  getMoviePlayData, getMoviePlayDataFailed,
 }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(PlayPage)
+export default connect(mapStateToProps, mapDispatchToProps)(PlayBoard)

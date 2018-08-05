@@ -8,6 +8,11 @@ export default (state = {getMoviePlayDataSuccess: false}, action) => {
         getMoviePlayDataSuccess: true,
         moviePlayData: action.data,
       }
+    case actions.GET_MOVIE_PLAY_DATA_FAILED:
+      return {
+        ...state,
+        getMoviePlayDataSuccess: false
+      }
     default:
       return state
   }

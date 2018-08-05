@@ -19,7 +19,6 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  toggleHomeBoard: PropTypes.func,
 }
 
 export default Home

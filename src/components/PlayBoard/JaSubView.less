@@ -1,0 +1,41 @@
+.wrap {
+  position: absolute;
+  z-index: 2;
+  width: 90%;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1.5em;
+  font-size: 3em;
+
+  @media (max-width: 768px) {
+    font-size: 1.6em;
+  }
+  @media (max-width: 1112px) and (min-height: 769px) {
+    font-size: 2.5em;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.2em;
+  }
+  visibility: hidden;
+
+  &.fullscreen {
+    font-size: 3.8em;
+    @media (max-width: 812px) {
+      font-size: 1.6em;
+    }
+    @media (max-width: 1112px) and (min-height: 813px) {
+      font-size: 3em;
+    }
+  }
+  &.enable-ja-sub {
+    visibility: visible;
+    top: unset;
+    bottom: 15%;
+  }
+  &.enable-vi-sub {
+    bottom: unset;
+    top: 10%;
+  }
+}

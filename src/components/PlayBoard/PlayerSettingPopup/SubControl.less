@@ -1,0 +1,33 @@
+@import './PlayerSettingPopup';
+@import '../../Styles/Icons/index';
+
+.subtitle-control:extend(.popup-setting-root-btn) {
+  .subtitle-icon();
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .sub-item {
+    &:extend(.sub-items-lv1 all);
+    visibility: hidden;
+    div {
+      background: @subitem-lv1-backround-color;
+
+      &.active {
+        background: @button-active-background-color;
+      }
+      p {
+        font-family: 'Roboto', sans-serif;
+      }
+    }
+  }
+
+  &.active {
+    .sub-item {
+      visibility: visible;
+    }
+  }
+}
+
