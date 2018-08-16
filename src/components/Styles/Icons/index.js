@@ -12,4 +12,4 @@ export const IconPlay = ({size, className}) => <Icon className={className} size=
 export const IconImdb = ({size, className}) => <Icon className={className} size={size} icon={imdb} />
 export const User = ({size, className}) => <Icon className={className} size={size} icon={userCircle} />
 export const Menu = ({size, className}) => <Icon className={className} size={size} icon={alignLeft} />
-export const Logo = ({size, className}) => <Icon className={className} size={size} icon={spotify} />
+export const Logo = ({size, className}) => <Icon className={className} size={size} icon={spotify}/>

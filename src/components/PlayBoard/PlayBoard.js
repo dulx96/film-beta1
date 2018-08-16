@@ -28,7 +28,6 @@ export default class PlayBoard extends React.PureComponent {
       enableJaSub: true,
       settingActive: false,
     }
-    this.wrapPlayer = React.createRef()
     this.player = React.createRef()
     this.seek = this.seek.bind(this)
     this.toggleSetting = this.toggleSetting.bind(this)
@@ -89,8 +88,7 @@ export default class PlayBoard extends React.PureComponent {
     //TODO improve performance sub search
     const {subs, currentSubIndex, subJALoading} = this.state
     if (!subJALoading && state.currentTime !== prevState.currentTime) {
-      let tempIndex = -1
-      tempIndex = subs.JA.slice(0, subs.JA.length - 1).findIndex(
+      let tempIndex = subs.JA.slice(0, subs.JA.length - 1).findIndex(
         (sub) => sub.startTime / 1000 <= state.currentTime &&
           sub.endTime / 1000 >= state.currentTime,
       )
@@ -106,11 +104,14 @@ export default class PlayBoard extends React.PureComponent {
   }
 
   toggleSub (lan) {
+    let currentTime = this.player.current.getState().player.currentTime
     switch (lan) {
       case 'vi': {
-        let currentTime = this.player.current.getState().player.currentTime
         this.setState(prevState => ({enableViSub: !prevState.enableViSub}),
-          () => this.player.current.seek(currentTime))
+          () => {
+            this.player.current.seek(currentTime)
+            this.player.current.play()
+          })
         break
       }
       case 'ja': {
@@ -120,7 +121,6 @@ export default class PlayBoard extends React.PureComponent {
       default:
         return
     }
-
   }
 
   toggleSetting () {
@@ -131,8 +131,8 @@ export default class PlayBoard extends React.PureComponent {
     const fetchedData = this.props.getMoviePlayDataSuccess
     const data = this.props.moviePlayData
     const src = {
-      en: 'https://video.fhan2-2.fna.fbcdn.net/v/t42.9040-2/10000000_273436483435087_3002577934025228288_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=622&oh=4366db4a49e5d409667cf6f4d6d2c37f&oe=5B697570',
-      vi: 'https://video.fsgn2-3.fna.fbcdn.net/v/t42.9040-2/10000000_941543059363654_7187052948612972544_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=898&oh=9b153fb7910b7bbb80cb135bc82783c4&oe=5B67057E',
+      en: 'https://video.fsgn4-1.fna.fbcdn.net/v/t42.9040-2/10000000_482153782279699_5541991207644692480_n.mp4?_nc_cat=1&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGhtKiln466rKPbCWnGSvkAmfV2btwkQUjx6eG5ZeKJWt4rTt6jBWtsFlYh4qR2Em-ewCsTGVKuGD32jfBvxjM13getEmcD9dp7YSy0NfwKqA&rl=1500&vabr=947&oh=7c82189d8108959f8ea543a80bdf298d&oe=5B76CD54',
+      vi: 'https://video.fhan3-2.fna.fbcdn.net/v/t42.9040-2/10000000_2124043497813397_2436500299519623168_n.mp4?_nc_cat=1&efg=eyJybHIiOjE1NzUsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1575&vabr=1050&oh=88bad5f01472a8bce781191709d31424&oe=5B77DC9A',
     }
     return (
       !fetchedData ? <div>loading</div> :
