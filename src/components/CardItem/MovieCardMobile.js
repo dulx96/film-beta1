@@ -4,13 +4,9 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import CDN from '../../constants/cdn'
 
-export default class MovieCardMobile extends React.Component {
-  shouldComponentUpdate () {
-    return false
-  }
-
+export default class MovieCardMobile extends React.PureComponent {
   render () {
-    const bgImg = {backgroundImage: `url(${CDN + '/images/poster3.jpg'}`}
+    const bgImg = {backgroundImage: `url(${CDN + '/images/poster3-medium.jpg'}`}
     return (
       <div className={styles.wrap}>
         <div className={styles.container} style={bgImg}>

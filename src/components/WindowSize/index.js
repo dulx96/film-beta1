@@ -45,5 +45,5 @@ const WithWindowSize = (Component) => props => (
     {({width}) => (<Component {...props} windowWidth={width} />)}
   </WindowSizeContext.Consumer>
 )
-export { WindowSize, WithWindowSize }
+export { WindowSize, WithWindowSize, WindowSizeContext }
 

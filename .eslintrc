@@ -3,6 +3,16 @@
     "eslint:recommended",
     "plugin:react-app/recommended"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": [
+          "node_modules",
+          "src/"
+        ]
+      }
+    }
+  },
   "rules": {
     "react-app/jsx-a11y/href-no-hash": "off",
     "eol-last": 2

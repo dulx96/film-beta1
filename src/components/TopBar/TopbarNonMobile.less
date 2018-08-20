@@ -12,59 +12,24 @@
     text-decoration: none;
     font-size: 30px;
     font-weight: 600;
-  }
-  .search-bar {
-    width: 300px;
-    height: 30px;
-    display: flex;
-    padding: 0 5px;
-    color: @secondary-text-color;
-    --borderWidth: 2px;
-    --borderRadius: 30px;
-    background: #FFFFFF;
-    position: relative;
-    border-radius: var(--borderRadius);
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: calc(-1 * var(--borderWidth));
-      left: calc(-1 * var(--borderWidth));
-      height: calc(100% + var(--borderWidth) * 2);
-      width: calc(100% + var(--borderWidth) * 2);
-      background: linear-gradient(60deg, #1DC4E9, #1DE9B6);
-      //background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
-      border-radius: calc(2 * var(--borderRadius));
-
-      z-index: -1;
-      background-size: 300% 300%;
-      //animation: animatedbordergradient 3s ease alternate infinite;
-    }
-    @keyframes animatedbordergradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
+    margin-right: 20px;
   }
   .menu {
     display: flex;
     align-items: center;
     .nav-link {
-      margin: 0.1em;
-      width: 5em;
+      margin: 0.5rem;
+      @media (max-width: 1000px) {
+        margin: 0;
+      }
+      width: 7rem;
       text-align: center;
       padding: 0.5em 0;
-      font-size: 1.4em;
-      border-radius: 1em;
-      font-weight: 400;
+      font-size: 1.4rem;
+      border-radius: 1rem;
+      font-weight: 600;
       color: @secondary-text-color;
+      opacity: 0.8;
       text-decoration: none;
 
       &.active {
