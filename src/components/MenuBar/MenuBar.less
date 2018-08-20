@@ -1,0 +1,36 @@
+@import '~components/Styles/Layout/layout';
+@import '~components/Styles/Themes/default';
+
+.wrap {
+  position: fixed;
+  z-index: @z-index-lv3;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: @body-background-color;
+  transition: all 0.3s linear;
+  transform: translateX(-100%);
+  &.active {
+    transform: translateX(0);
+  }
+  .top-section {
+    width: 100%;
+    height: 56px;
+    display: flex;
+    background-color: red;
+    align-items: center;
+    h1 {
+      margin: 0 10px;
+    }
+    p {
+
+    }
+    .close-btn {
+      font-size: 3rem;
+      margin: 0 10px;
+    }
+  }
+}
+

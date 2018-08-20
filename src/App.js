@@ -7,11 +7,30 @@ import { fetchUser } from './actions/userActions'
 import TopBar from './components/TopBar'
 import Home from './components/Home'
 import MoviePlayPage from './components/MoviePlayPage'
+import Filter from './components/Filter'
+import MenuBar from 'components/MenuBar'
+
+//import context
+import { WindowSize } from './components/WindowSize'
+import { MenuBarContext } from 'components/MenuBar'
+
 //import style
 import './App.css'
-import { WindowSize } from './components/WindowSize'
 
 class App extends Component {
+  constructor () {
+    super()
+    this.toggleMenuBar = this.toggleMenuBar.bind(this)
+    this.state = {
+      menuBarActive: false,
+      toggleMenuBar: this.toggleMenuBar,
+    }
+  }
+
+  toggleMenuBar () {
+    this.setState(prev => ({menuBarActive: !prev.menuBarActive}))
+  }
+
   componentWillMount () {
     this.props.fetchUser()
   }
@@ -20,12 +39,19 @@ class App extends Component {
     return (
       <Router>
         <WindowSize>
-          <TopBar />
+          <MenuBarContext.Provider value={this.state}>
+            <TopBar />
+          </MenuBarContext.Provider>
+          {/*only visible on mobile device*/}
+          <MenuBar
+            active={this.state.menuBarActive}
+            toggleMenuBar={this.toggleMenuBar} />
           <Route exact path="/" render={() => (
             <Redirect to="/home" />
           )} />
           <Route path="/home" component={Home} />
           <Route path="/movie/play" component={MoviePlayPage} />
+          <Route path="/search" component={Filter} />
         </WindowSize>
       </Router>
     )

@@ -11,6 +11,31 @@
 @movie-card-marginLR-num: 7;
 @movie-card-marginTB: 10px;
 
+//filter, search page layout
+@filter-bar-width: 300px;
+.filter-result-container {
+  @media (min-width: 768px) {
+    width: floor((768px - @filter-bar-width )/(@movie-card-width + @movie-card-marginLR * 2)) * (@movie-card-width + 2 * @movie-card-marginLR);
+  }
+  @media (min-width: 834px) {
+    width: floor((834px - @filter-bar-width)/(@movie-card-width + @movie-card-marginLR * 2)) * (@movie-card-width + 2 * @movie-card-marginLR);
+  }
+  @media (min-width: 1024px - @scroll-bar-width) {
+    width: floor((1024px - @filter-bar-width - @scroll-bar-width)/(@movie-card-width + @movie-card-marginLR*2)) * (@movie-card-width + 2 * @movie-card-marginLR);
+  }
+  @media (min-width: 1280px - @scroll-bar-width) {
+    width: floor((1280px - @filter-bar-width - @scroll-bar-width)/(@movie-card-width + @movie-card-marginLR*2)) * (@movie-card-width + 2 * @movie-card-marginLR);
+  }
+  @media (min-width: 1366px - @scroll-bar-width) {
+    width: floor((1366px - @filter-bar-width - @scroll-bar-width)/(@movie-card-width + @movie-card-marginLR*2)) * (@movie-card-width + 2 * @movie-card-marginLR);
+  }
+  @media (min-width: 1400px - @scroll-bar-width) {
+    width: floor((1400px - @filter-bar-width - @scroll-bar-width)/(@movie-card-width + @movie-card-marginLR*2)) * (@movie-card-width + 2 * @movie-card-marginLR);
+  }
+  @media (min-width: 1600px - @scroll-bar-width) {
+    width: 6px * (@movie-card-width + 2 * @movie-card-marginLR);
+  }
+}
 //movie play page layout
 //responsive point var less
 @max-width-1-col: 568px; //any screen what width smaller than that will display 1 column

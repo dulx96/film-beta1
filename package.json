@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "preload-webpack-plugin": "^2.3.0",
+    "react-autocomplete": "^1.8.1",
     "react-snap": "^1.15.0",
     "redux-logger": "^3.0.6"
   },
