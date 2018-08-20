@@ -5,16 +5,14 @@ import { IconPlay } from '../Styles/Icons'
 import classNames from 'classnames'
 import CDN from '../../constants/cdn'
 
-export default class MovieCardNonMobile extends React.Component {
-  shouldComponentUpdate () {
-    return false
-  }
+export default class MovieCardNonMobile extends React.PureComponent {
 
   render () {
-    const bgImg = {backgroundImage: `url(${CDN + '/images/poster3.jpg'}`}
+    const bgImg = {backgroundImage: `url(${CDN + '/images/poster3-small.jpg'}`}
     return (
       <div className={styles.wrap}>
-        <div className={styles.thumbnail} style={bgImg}>
+        <div className={styles['wrap-thumbnail']}>
+          <div className={styles.thumbnail} style={bgImg} />
         </div>
         <Link to='/movie/play'>
           <IconPlay className={styles['play-icon']}
@@ -34,10 +32,10 @@ export default class MovieCardNonMobile extends React.Component {
         </div>
 
         <div className={classNames({
-        [styles.level]: true,
-        [styles['impress-div']]: true,
+          [styles.level]: true,
+          [styles['impress-div']]: true,
         })}>
-        <span>N3</span>
+          <span>N3</span>
         </div>
       </div>
 
