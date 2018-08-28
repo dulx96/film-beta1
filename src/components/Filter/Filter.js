@@ -38,12 +38,14 @@ class Filter extends React.PureComponent {
                       titles {
                         romaji
                         }
+                        _id
                           }
                   }` : `{
                     movies(title_en:"${value}") {
                       titles {
                         romaji
                         }
+                        _id
                           }
                   }`
     //set state loading before fetch

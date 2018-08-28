@@ -15,6 +15,7 @@ import CDN from '../../constants/cdn'
 import '../../../node_modules/ekiio-video-react/lib/styles/ekiio-video-react.css'
 import * as styles from './PlayBoard.less'
 import classNames from 'classnames'
+import { getIDfromUrl } from 'utils'
 
 export default class PlayBoard extends React.PureComponent {
   constructor (props) {
@@ -55,7 +56,10 @@ export default class PlayBoard extends React.PureComponent {
 
   componentDidMount () {
     //get movie data after initial render
-    this.props.getMoviePlayData()
+    const S3URL = this.props.match.params.id
+    const id = getIDfromUrl(S3URL)
+
+    this.props.getMoviePlayData(id)
   }
 
   componentWillUnmount () {
@@ -71,7 +75,7 @@ export default class PlayBoard extends React.PureComponent {
 
       //only fetch sub when got movie data
       if (prevState.subJALoading) {
-        fetch(CDN + this.props.moviePlayData.JASubSrc)
+        fetch(CDN + `/${this.props.match.params.id}/ss-1/ep-1/jp.srt`)
           .then(res => res.text())
           .then(data => {
             this.setState(
@@ -129,11 +133,10 @@ export default class PlayBoard extends React.PureComponent {
 
   render () {
     const fetchedData = this.props.getMoviePlayDataSuccess
-    const data = this.props.moviePlayData
-    const src = {
-      en: 'https://video.fsgn4-1.fna.fbcdn.net/v/t42.9040-2/10000000_482153782279699_5541991207644692480_n.mp4?_nc_cat=1&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&_nc_eui2=AeGhtKiln466rKPbCWnGSvkAmfV2btwkQUjx6eG5ZeKJWt4rTt6jBWtsFlYh4qR2Em-ewCsTGVKuGD32jfBvxjM13getEmcD9dp7YSy0NfwKqA&rl=1500&vabr=947&oh=7c82189d8108959f8ea543a80bdf298d&oe=5B76CD54',
-      vi: 'https://video.fhan3-2.fna.fbcdn.net/v/t42.9040-2/10000000_2124043497813397_2436500299519623168_n.mp4?_nc_cat=1&efg=eyJybHIiOjE1NzUsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1575&vabr=1050&oh=88bad5f01472a8bce781191709d31424&oe=5B77DC9A',
-    }
+    let src = fetchedData ?{
+      'en': this.props.moviePlayData.data.movies[0].seasons[0].episodes[0].videos.original_fb,
+      'vi': this.props.moviePlayData.data.movies[0].seasons[0].episodes[0].videos.vietsub_fb,
+    } : null
     return (
       !fetchedData ? <div>loading</div> :
 
@@ -147,7 +150,7 @@ export default class PlayBoard extends React.PureComponent {
               <Player
                 ref={this.player}
                 src={this.state.enableViSub ? src.vi : src.en}
-                poster="http://cdn.ekiio.com/images/1.jpg"
+                poster={CDN + `/${this.props.match.params.id}/ss-1/poster.jpg`}
                 toggleSetting={this.toggleSetting}
               >
                 <PlayerSettingPopup settingActive={this.state.settingActive}

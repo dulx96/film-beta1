@@ -50,7 +50,7 @@ class App extends Component {
             <Redirect to="/home" />
           )} />
           <Route path="/home" component={Home} />
-          <Route path="/movie/play" component={MoviePlayPage} />
+          <Route path="/movie/play/:id" component={MoviePlayPage} />
           <Route path="/search" component={Filter} />
         </WindowSize>
       </Router>

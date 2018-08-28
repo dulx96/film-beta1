@@ -1,13 +1,10 @@
 import React from 'react'
-
 //import components
 import { Slide } from '../../CardItem/index'
 //import plugins
 import Slider from 'react-slick'
-import {WithWindowSize} from '../../WindowSize'
-
+import { WithWindowSize } from '../../WindowSize'
 //import constant
-import CDN from '../../../constants/cdn'
 // import styles
 import * as styles from './HomeCarousel.less'
 import './Carousel.css'
@@ -51,7 +48,6 @@ class HomeCarousel extends React.PureComponent {
     const data = this.props.data
     return (
       <div className={styles.wrap}
-        // style={{backgroundImage: `url(${CDN + '/images/background.jpg'})`}}
       >
         <div className={styles.content}>
           <Slider {...settings}>

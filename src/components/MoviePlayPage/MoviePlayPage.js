@@ -17,7 +17,7 @@ export default class MoviePlayPage extends React.PureComponent {
         <div className={classNames({
           [styles.container]: true,
         })}>
-          <PlayBoard />
+          <PlayBoard {...this.props}/>
         </div>
       </div>
     )

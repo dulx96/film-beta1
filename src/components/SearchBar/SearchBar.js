@@ -9,6 +9,7 @@ import { WithWindowSize } from 'components/WindowSize'
 import API_DOMAIN from 'constants/api'
 //import styles
 import * as styles from './SearchBar.less'
+import { convertToUrl } from '../../utils'
 
 class SearchBar extends React.PureComponent {
   state = {
@@ -22,6 +23,7 @@ movies(title_en:"${name}") {
     titles {
       romaji
     }
+    _id
   }
 }`
     fetch(API_DOMAIN, {
@@ -33,7 +35,7 @@ movies(title_en:"${name}") {
       .then(data => (data.data !== null) && this.setState(
         {
           unitedStates: data.data.movies.map(
-            mv => ({abbr: mv.titles.romaji, name: mv.titles.romaji})),
+            mv => ({abbr: mv.titles.romaji, name: mv.titles.romaji, id: mv._id})),
           loading: false,
         }))
   }
@@ -91,7 +93,7 @@ movies(title_en:"${name}") {
             className={classNames(styles.item,
               {[styles.highlighted]: isHighlighted})}
             key={item.abbr}
-            to="/movie/play">
+            to={`/movie/play/${convertToUrl(item.name, item.id)}`}>
             {item.name}
           </Link>
         )}

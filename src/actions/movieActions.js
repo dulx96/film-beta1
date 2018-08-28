@@ -1,4 +1,17 @@
 import * as actions from '../constants/actionTypes'
+import API_DOMAIN from '../constants/api'
+
+const query = `{
+ moviespaginated(count: 12, page: 1){
+   movies{
+     titles{
+       romaji
+       original
+     }
+     _id
+   }
+ }
+}`
 
 const movieDataPlayMocks = {
   title: 'sontung-mtp',
@@ -32,9 +45,28 @@ export const getMoviePlayDataFailed = () => (
   }
 )
 
-export const getMoviePlayData = (id) => dispatch =>
-  dispatch(getMoviePlayDataSuccess(movieDataPlayMocks))
-
+export const getMoviePlayData = (id) => dispatch => {
+  const query = `{movies(_id:"${id}") {
+  seasons(season:1) {
+    episodes(episode:1) {
+      videos {
+        original_gg
+        original_fb
+        vietsub_gg
+        vietsub_fb
+      }
+    }
+  }
+}}`
+  fetch(API_DOMAIN, {
+    method: 'POST',
+    body: JSON.stringify({query: query}),
+    headers: {'Content-Type': 'application/json'},
+  }).then(res => res.json())
+    .then(data => dispatch(
+      getMoviePlayDataSuccess(data),
+    ))
+}
 export const getMovieDetailsDataSuccess = (data) => (
   {
     type: actions.GET_MOVIE_DETAILS_DATA_SUCCESS,

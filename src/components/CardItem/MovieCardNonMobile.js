@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom'
 import { IconPlay } from '../Styles/Icons'
 import classNames from 'classnames'
 import CDN from '../../constants/cdn'
+import {convertToUrl} from 'utils'
 
 export default class MovieCardNonMobile extends React.PureComponent {
 
   render () {
-    const bgImg = {backgroundImage: `url(${CDN + '/images/poster3-small.jpg'}`}
+    const idURL = convertToUrl(this.props.titles.romaji, this.props._id)
+    const bgImg = {backgroundImage: `url(${CDN + '/' + idURL + '/ss-1/thumbnail_small.jpg'}`}
     return (
       <div className={styles.wrap}>
         <div className={styles['wrap-thumbnail']}>
           <div className={styles.thumbnail} style={bgImg} />
         </div>
-        <Link to='/movie/play'>
+        <Link to={'/movie/play/' + idURL}>
           <IconPlay className={styles['play-icon']}
                     size={80} />
         </Link>
